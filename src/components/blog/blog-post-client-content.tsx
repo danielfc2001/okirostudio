@@ -14,9 +14,9 @@ import { StarRating } from '@/components/ui/star-rating';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { format } from 'date-fns';
 import type { PostType, Comment } from '@/lib/blog-data';
 import { getAllBlogPosts } from '@/lib/blog-data'; // Used for the local "update" simulation
+import FormattedDate from '@/components/blog/formatted-date';
 
 interface BlogPostClientContentProps {
   initialPost: PostType;
@@ -196,7 +196,11 @@ export default function BlogPostClientContent({ initialPost, slug }: BlogPostCli
                         <div>
                           <CardTitle className="text-base font-semibold text-foreground">{comment.user}</CardTitle>
                           <CardDescription className="text-xs text-muted-foreground">
-                            {format(new Date(comment.date), "MMMM d, yyyy 'at' h:mm a")}
+                             <FormattedDate 
+                               dateString={comment.date} 
+                               formatString="MMMM d, yyyy 'at' h:mm a" 
+                               placeholder="Loading date..."
+                              />
                           </CardDescription>
                         </div>
                       </div>
@@ -217,4 +221,3 @@ export default function BlogPostClientContent({ initialPost, slug }: BlogPostCli
     </main>
   );
 }
-
