@@ -12,6 +12,7 @@ const navLinks = [
   { href: "#about", label: "About Us" },
   { href: "#services", label: "Services" },
   { href: "#portfolio", label: "Featured Works" },
+  { href: "/blog", label: "Blog" },
 ]
 
 export default function Navigation() {
