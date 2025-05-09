@@ -51,17 +51,18 @@ export default function Footer() {
               &copy; {new Date().getFullYear()} MarkDev Landing. All rights reserved.
             </p>
             <div className="flex justify-center md:justify-start space-x-3 pt-2">
-                <ThemeToggle />
+                {/* ThemeToggle is now in the main navigation, can be removed from footer if desired or kept for redundancy */}
+                {/* <ThemeToggle /> */}
             </div>
           </div>
 
-          {/* Quick Links (optional) */}
+          {/* Quick Links */}
           <div className="text-center md:text-left">
             <h4 className="font-semibold text-foreground mb-3">Quick Links</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="#about" className="hover:text-primary transition-colors">About Us</Link></li>
-              <li><Link href="#services" className="hover:text-primary transition-colors">Services</Link></li>
-              <li><Link href="#portfolio" className="hover:text-primary transition-colors">Portfolio</Link></li>
+              <li><Link href="/#about" className="hover:text-primary transition-colors">About Us</Link></li>
+              <li><Link href="/#services" className="hover:text-primary transition-colors">Services</Link></li>
+              <li><Link href="/#portfolio" className="hover:text-primary transition-colors">Portfolio</Link></li>
               <li><Link href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
             </ul>
           </div>

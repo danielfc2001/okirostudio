@@ -7,11 +7,12 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Logo } from "./logo"
 import { cn } from "@/lib/utils"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 const navLinks = [
-  { href: "#about", label: "About Us" },
-  { href: "#services", label: "Services" },
-  { href: "#portfolio", label: "Featured Works" },
+  { href: "/#about", label: "About Us" },
+  { href: "/#services", label: "Services" },
+  { href: "/#portfolio", label: "Featured Works" },
   { href: "/blog", label: "Blog" },
 ]
 
@@ -27,30 +28,6 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const NavItems = ({isMobile = false}: {isMobile?: boolean}) => (
-    <>
-      {navLinks.map((link) => (
-        <Link
-          key={link.href}
-          href={link.href}
-          className={cn(
-            "text-sm font-medium transition-colors hover:text-primary",
-            isMobile ? "block py-2 px-4 hover:bg-muted" : "px-3 py-2"
-          )}
-          onClick={() => isMobile && setMobileMenuOpen(false)}
-        >
-          {link.label}
-        </Link>
-      ))}
-      <Button asChild variant={isMobile ? "default" : "outline"} className={isMobile ? "w-full mt-4" : ""}>
-        <Link href="#subscribe" onClick={() => isMobile && setMobileMenuOpen(false)}>
-          <Mail className="mr-2 h-4 w-4" />
-          Subscribe
-        </Link>
-      </Button>
-    </>
-  )
-
   return (
     <header
       className={cn(
@@ -64,8 +41,25 @@ export default function Navigation() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-2">
-          <NavItems />
+        <nav className="hidden md:flex items-center space-x-1">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm font-medium transition-colors hover:text-primary px-3 py-2"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Button asChild variant="outline" className="ml-2">
+            <Link href="/#subscribe">
+              <Mail className="mr-2 h-4 w-4" />
+              Subscribe
+            </Link>
+          </Button>
+          <div className="ml-2">
+            <ThemeToggle />
+          </div>
         </nav>
 
         {/* Mobile Navigation */}
@@ -76,8 +70,7 @@ export default function Navigation() {
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[280px] p-0">
-              <div className="flex flex-col h-full">
+            <SheetContent side="right" className="w-[280px] flex flex-col p-0">
                 <div className="p-6 border-b flex justify-between items-center">
                    <Link href="/" aria-label="MarkDev Home" onClick={() => setMobileMenuOpen(false)}>
                      <Logo className="h-8 w-auto" />
@@ -86,10 +79,29 @@ export default function Navigation() {
                      <X className="h-6 w-6" />
                    </Button>
                 </div>
-                <nav className="flex-grow p-4 space-y-2">
-                  <NavItems isMobile={true} />
+                <nav className="flex-grow p-4">
+                  <div className="space-y-2">
+                    {navLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className="block py-2 px-3 rounded-md text-sm font-medium transition-colors hover:text-primary hover:bg-muted"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                  <Button asChild variant="default" className="w-full mt-6">
+                    <Link href="/#subscribe" onClick={() => setMobileMenuOpen(false)}>
+                      <Mail className="mr-2 h-4 w-4" />
+                      Subscribe
+                    </Link>
+                  </Button>
                 </nav>
-              </div>
+                <div className="p-4 border-t flex justify-center">
+                    <ThemeToggle />
+                </div>
             </SheetContent>
           </Sheet>
         </div>
