@@ -253,5 +253,30 @@ export const getBlogPostBySlug = (slug: string): PostType | undefined => {
 };
 
 export const getAllBlogPosts = (): PostType[] => {
+  // Ensure posts are sorted by date or ID if needed for default listing
+  // For now, returning as is.
   return blogPostsList;
+};
+
+export const getTopRatedBlogPosts = (count: number): PostType[] => {
+  const allPosts = getAllBlogPosts();
+
+  const postsWithAvgRating = allPosts.map(post => {
+    const totalRating = post.comments.reduce((acc, comment) => acc + comment.rating, 0);
+    const averageRating = post.comments.length > 0 ? totalRating / post.comments.length : 0;
+    return { post, averageRating };
+  });
+
+  // Sort by average rating in descending order.
+  // For posts with the same average rating, a secondary sort (e.g., by number of comments or date) could be added.
+  // For now, simple sort by average rating is sufficient.
+  postsWithAvgRating.sort((a, b) => {
+    if (b.averageRating !== a.averageRating) {
+      return b.averageRating - a.averageRating;
+    }
+    // Optional: secondary sort by number of comments if ratings are equal
+    return b.post.comments.length - a.post.comments.length;
+  });
+
+  return postsWithAvgRating.slice(0, count).map(item => item.post);
 };
