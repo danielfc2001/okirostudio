@@ -12,7 +12,7 @@ export interface PostType {
   id: number;
   slug: string;
   title: string;
-  date: string;
+  date: string; // Parsable date string e.g., "Month Day, Year" or ISO
   author: string;
   excerpt: string;
   imageUrl: string; // For main blog post image
@@ -246,6 +246,225 @@ export const blogPostsList: PostType[] = [
         { id: "c9", user: "Ivan S.", avatar: "https://picsum.photos/40/40?random=209", text: "Good overview of different video types. I'm planning to try testimonial videos next.", rating: 4, date: "2024-04-21T17:30:00Z" },
     ],
   },
+  {
+    id: 7,
+    slug: "influencer-marketing-strategies",
+    title: "Effective Influencer Marketing Strategies",
+    date: "January 10, 2024",
+    author: "Olivia Chen, Social Media Manager",
+    excerpt: "Navigate the world of influencer marketing and discover strategies for successful collaborations.",
+    imageUrl: "https://picsum.photos/1200/600?random=16",
+    thumbnailUrl: "https://picsum.photos/600/400?random=16",
+    dataAiHint: "influencer person",
+    content: `
+      <p class="mb-4 text-lg leading-relaxed">Influencer marketing has become a cornerstone of modern digital strategy. Collaborating with the right influencers can amplify your brand's reach, build trust, and drive sales. However, success requires careful planning and execution.</p>
+      <h2 class="text-2xl font-semibold mt-6 mb-3">Identifying the Right Influencers</h2>
+      <p class="mb-4 leading-relaxed">Look beyond follower counts. Focus on relevance to your brand, audience demographics, engagement rates, and authenticity. Micro-influencers often have highly engaged niche audiences and can be more cost-effective.</p>
+      <h2 class="text-2xl font-semibold mt-6 mb-3">Setting Clear Campaign Goals</h2>
+      <p class="mb-4 leading-relaxed">Define what you want to achieve: brand awareness, lead generation, direct sales, or content creation. Clear goals will help you choose the right influencers and measure success.</p>
+      <figure class="my-6">
+        <img src="https://picsum.photos/800/400?random=107" alt="Influencer collaboration" class="rounded-lg shadow-md mx-auto" data-ai-hint="social network"/>
+        <figcaption class="text-center text-sm text-muted-foreground mt-2">Authentic partnerships are key to influencer marketing success.</figcaption>
+      </figure>
+      <h2 class="text-2xl font-semibold mt-6 mb-3">Building Authentic Relationships</h2>
+      <p class="mb-4 leading-relaxed">Treat influencers as partners, not just advertising channels. Foster genuine relationships, provide creative freedom (within guidelines), and ensure the collaboration aligns with their content style and values.</p>
+      <h2 class="text-2xl font-semibold mt-6 mb-3">Compliance and Disclosure</h2>
+      <p class="mb-4 leading-relaxed">Ensure all influencer collaborations comply with advertising regulations, including clear disclosure of sponsored content (e.g., using #ad or #sponsored).</p>
+      <blockquote class="border-l-4 border-primary p-4 my-6 bg-muted/50">
+        <p class="italic text-foreground">"The most effective influencer marketing campaigns are built on trust, authenticity, and mutual benefit."</p>
+      </blockquote>
+      <p class="leading-relaxed">By approaching influencer marketing strategically, brands can tap into powerful voices to connect with their target audience in meaningful ways.</p>
+    `,
+    comments: [
+      { id: "c10", user: "Kevin B.", avatar: "https://picsum.photos/40/40?random=210", text: "Great insights on micro-influencers. We've had good success with them!", rating: 5, date: "2024-05-01T09:20:00Z" },
+    ],
+  },
+  {
+    id: 8,
+    slug: "data-privacy-in-marketing-2024",
+    title: "Data Privacy in Marketing: Navigating 2024",
+    date: "January 25, 2024",
+    author: "Laura Guzman, Legal Counsel",
+    excerpt: "Understand the evolving landscape of data privacy regulations and how they impact your marketing efforts.",
+    imageUrl: "https://picsum.photos/1200/600?random=17",
+    thumbnailUrl: "https://picsum.photos/600/400?random=17",
+    dataAiHint: "data security",
+    content: `
+      <p class="mb-4 text-lg leading-relaxed">Data privacy is no longer an afterthought in marketing; it's a fundamental requirement. With regulations like GDPR, CCPA, and others evolving, marketers must prioritize transparency and ethical data handling.</p>
+      <h2 class="text-2xl font-semibold mt-6 mb-3">Key Privacy Principles</h2>
+      <p class="mb-4 leading-relaxed">Understand principles like data minimization (collecting only necessary data), purpose limitation (using data only for stated purposes), consent, and providing users with control over their data.</p>
+      <h2 class="text-2xl font-semibold mt-6 mb-3">Impact on Personalization</h2>
+      <p class="mb-4 leading-relaxed">While personalization is key, it must be balanced with privacy. Focus on first-party data strategies and be transparent about how data is used to personalize experiences.</p>
+      <figure class="my-6">
+        <img src="https://picsum.photos/800/400?random=108" alt="Data privacy shield" class="rounded-lg shadow-md mx-auto" data-ai-hint="security shield"/>
+        <figcaption class="text-center text-sm text-muted-foreground mt-2">Building trust through transparent data practices is crucial.</figcaption>
+      </figure>
+      <h2 class="text-2xl font-semibold mt-6 mb-3">The Rise of Privacy-Enhancing Technologies (PETs)</h2>
+      <p class="mb-4 leading-relaxed">Explore PETs that allow for data analysis and insights without compromising individual privacy, such as federated learning or differential privacy.</p>
+      <blockquote class="border-l-4 border-primary p-4 my-6 bg-muted/50">
+        <p class="italic text-foreground">"Respecting user privacy is not just a legal obligation; it's essential for building customer trust and long-term brand loyalty."</p>
+      </blockquote>
+      <p class="leading-relaxed">Marketers who proactively adapt to the evolving privacy landscape will build stronger, more trusting relationships with their customers.</p>
+    `,
+    comments: [
+      { id: "c11", user: "Mark R.", avatar: "https://picsum.photos/40/40?random=211", text: "A very important topic. Thanks for simplifying it.", rating: 4, date: "2024-05-10T14:00:00Z" },
+      { id: "c12", user: "Nancy J.", avatar: "https://picsum.photos/40/40?random=212", text: "The point on first-party data is spot on.", rating: 5, date: "2024-05-11T11:30:00Z" },
+    ],
+  },
+  {
+    id: 9,
+    slug: "ux-ui-importance-conversion",
+    title: "The Importance of UX/UI in Conversion Rates",
+    date: "February 10, 2024",
+    author: "Emily White, Lead UX Designer",
+    excerpt: "Discover how intuitive design and seamless user experience directly impact your website's conversion rates.",
+    imageUrl: "https://picsum.photos/1200/600?random=18",
+    thumbnailUrl: "https://picsum.photos/600/400?random=18",
+    dataAiHint: "website design",
+    content: `
+      <p class="mb-4 text-lg leading-relaxed">User Experience (UX) and User Interface (UI) design are critical components of a successful digital presence. A well-designed website or app not only looks good but also guides users effectively towards conversion goals.</p>
+      <h2 class="text-2xl font-semibold mt-6 mb-3">First Impressions Matter</h2>
+      <p class="mb-4 leading-relaxed">Your website's UI is often the first interaction a potential customer has with your brand. A clean, professional, and aesthetically pleasing design builds credibility and trust.</p>
+      <h2 class="text-2xl font-semibold mt-6 mb-3">Intuitive Navigation and Usability</h2>
+      <p class="mb-4 leading-relaxed">UX focuses on making your digital platform easy to use. Intuitive navigation, clear calls-to-action, and a logical information architecture reduce friction and help users find what they need quickly, leading to higher satisfaction and conversion.</p>
+      <figure class="my-6">
+        <img src="https://picsum.photos/800/400?random=109" alt="User interface design" class="rounded-lg shadow-md mx-auto" data-ai-hint="interface sketch"/>
+        <figcaption class="text-center text-sm text-muted-foreground mt-2">Good UX/UI makes user journeys seamless and enjoyable.</figcaption>
+      </figure>
+      <h2 class="text-2xl font-semibold mt-6 mb-3">Mobile Responsiveness</h2>
+      <p class="mb-4 leading-relaxed">With a significant portion of web traffic coming from mobile devices, a responsive design that adapts to different screen sizes is non-negotiable. Poor mobile UX can drastically increase bounce rates and reduce conversions.</p>
+      <h2 class="text-2xl font-semibold mt-6 mb-3">Accessibility (A11y)</h2>
+      <p class="mb-4 leading-relaxed">Designing for accessibility ensures that your website can be used by people of all abilities. This not only broadens your audience but is also an ethical imperative and can improve SEO.</p>
+      <blockquote class="border-l-4 border-primary p-4 my-6 bg-muted/50">
+        <p class="italic text-foreground">"Good design is not just what it looks like and feels like. Good design is how it works." - Steve Jobs</p>
+      </blockquote>
+      <p class="leading-relaxed">Investing in quality UX/UI design is investing in your conversion rates. By prioritizing the user, you create a platform that not only attracts visitors but also effectively converts them into customers.</p>
+    `,
+    comments: [
+      { id: "c13", user: "Oscar P.", avatar: "https://picsum.photos/40/40?random=213", text: "Absolutely true. We saw a jump in conversions after our redesign.", rating: 5, date: "2024-05-15T16:10:00Z" },
+    ],
+  },
+  {
+    id: 10,
+    slug: "interactive-content-engagement",
+    title: "Boosting Engagement with Interactive Content",
+    date: "February 28, 2024",
+    author: "Chris Taylor, Content Strategist",
+    excerpt: "Move beyond static content. Learn how quizzes, polls, and calculators can significantly boost user engagement.",
+    imageUrl: "https://picsum.photos/1200/600?random=19",
+    thumbnailUrl: "https://picsum.photos/600/400?random=19",
+    dataAiHint: "interactive quiz",
+    content: `
+      <p class="mb-4 text-lg leading-relaxed">In a crowded digital landscape, capturing and retaining audience attention is a major challenge. Interactive content offers a dynamic way to engage users, provide value, and gather insights.</p>
+      <h2 class="text-2xl font-semibold mt-6 mb-3">What is Interactive Content?</h2>
+      <p class="mb-4 leading-relaxed">Interactive content requires active participation from the user, rather than passive consumption. Examples include quizzes, polls, surveys, calculators, interactive infographics, and contests.</p>
+      <h2 class="text-2xl font-semibold mt-6 mb-3">Benefits of Interactive Content</h2>
+      <ul class="list-disc list-inside mb-4 space-y-2 leading-relaxed">
+        <li><strong>Increased Engagement:</strong> It's more fun and memorable than static content.</li>
+        <li><strong>Higher Conversion Rates:</strong> Interactive tools can guide users towards a solution or product.</li>
+        <li><strong>Valuable Data Collection:</strong> Gather insights about your audience's preferences and needs.</li>
+        <li><strong>Improved Brand Recall:</strong> Memorable experiences lead to better brand recognition.</li>
+        <li><strong>Enhanced Social Sharing:</strong> People love to share quiz results or poll opinions.</li>
+      </ul>
+      <figure class="my-6">
+        <img src="https://picsum.photos/800/400?random=110" alt="Interactive quiz example" class="rounded-lg shadow-md mx-auto" data-ai-hint="quiz app"/>
+        <figcaption class="text-center text-sm text-muted-foreground mt-2">Interactive content encourages active user participation.</figcaption>
+      </figure>
+      <h2 class="text-2xl font-semibold mt-6 mb-3">Ideas for Interactive Content</h2>
+      <ul class="list-disc list-inside mb-4 space-y-2 leading-relaxed">
+        <li><strong>Quizzes:</strong> "What type of marketer are you?" or product recommendation quizzes.</li>
+        <li><strong>Polls & Surveys:</strong> Gather opinions on industry trends or product features.</li>
+        <li><strong>Calculators:</strong> ROI calculators, savings calculators, or pricing estimators.</li>
+        <li><strong>Interactive Infographics:</strong> Allow users to explore data points dynamically.</li>
+        <li><strong>Contests & Giveaways:</strong> Generate excitement and leads.</li>
+      </ul>
+      <blockquote class="border-l-4 border-primary p-4 my-6 bg-muted/50">
+        <p class="italic text-foreground">"Interactive content transforms your audience from passive observers into active participants in your brand's story."</p>
+      </blockquote>
+      <p class="leading-relaxed">By incorporating interactive elements into your content strategy, you can create more engaging, memorable, and effective marketing campaigns.</p>
+    `,
+    comments: [],
+  },
+  {
+    id: 11,
+    slug: "gamification-in-marketing",
+    title: "Level Up Your Marketing: The Power of Gamification",
+    date: "March 15, 2024",
+    author: "Rachel Green, Engagement Specialist",
+    excerpt: "Discover how game mechanics can be applied to marketing to drive engagement, loyalty, and conversions.",
+    imageUrl: "https://picsum.photos/1200/600?random=20",
+    thumbnailUrl: "https://picsum.photos/600/400?random=20",
+    dataAiHint: "game controller",
+    content: `
+      <p class="mb-4 text-lg leading-relaxed">Gamification in marketing involves applying game-design elements and principles in non-game contexts to engage users and motivate action. It's a powerful tool for making marketing interactions more fun and rewarding.</p>
+      <h2 class="text-2xl font-semibold mt-6 mb-3">Core Game Mechanics in Marketing</h2>
+      <ul class="list-disc list-inside mb-4 space-y-2 leading-relaxed">
+        <li><strong>Points Systems:</strong> Reward users for specific actions (e.g., purchases, referrals, content sharing).</li>
+        <li><strong>Badges and Achievements:</strong> Recognize milestones and accomplishments, encouraging continued participation.</li>
+        <li><strong>Leaderboards:</strong> Foster friendly competition and motivate users to strive for higher rankings.</li>
+        <li><strong>Challenges and Quests:</strong> Set specific tasks for users to complete, often with rewards.</li>
+        <li><strong>Progress Bars:</strong> Visualize progress towards a goal, motivating users to complete it.</li>
+      </ul>
+      <figure class="my-6">
+        <img src="https://picsum.photos/800/400?random=111" alt="Gamification dashboard" class="rounded-lg shadow-md mx-auto" data-ai-hint="achievement badge"/>
+        <figcaption class="text-center text-sm text-muted-foreground mt-2">Gamification can make user interactions more engaging and rewarding.</figcaption>
+      </figure>
+      <h2 class="text-2xl font-semibold mt-6 mb-3">Benefits of Gamification</h2>
+      <ul class="list-disc list-inside mb-4 space-y-2 leading-relaxed">
+        <li><strong>Increased User Engagement:</strong> Makes interactions more enjoyable and addictive.</li>
+        <li><strong>Enhanced Customer Loyalty:</strong> Rewards and recognition build stronger brand affinity.</li>
+        <li><strong>Improved Data Collection:</strong> Motivates users to provide more information willingly.</li>
+        <li><strong>Higher Conversion Rates:</strong> Encourages users to complete desired actions.</li>
+        <li><strong>Brand Differentiation:</strong> Creates a unique and memorable brand experience.</li>
+      </ul>
+      <blockquote class="border-l-4 border-primary p-4 my-6 bg-muted/50">
+        <p class="italic text-foreground">"Gamification taps into our innate desires for achievement, competition, and reward, making marketing feel less like a chore and more like an enjoyable experience."</p>
+      </blockquote>
+      <p class="leading-relaxed">When implemented thoughtfully, gamification can transform your marketing efforts, fostering deeper engagement and driving tangible business results.</p>
+    `,
+    comments: [
+        { id: "c14", user: "Sam T.", avatar: "https://picsum.photos/40/40?random=214", text: "We're looking into gamifying our loyalty program. This is very helpful!", rating: 4, date: "2024-05-20T10:00:00Z" },
+    ],
+  },
+  {
+    id: 12,
+    slug: "podcasting-for-brand-building",
+    title: "The Rise of Podcasting for Brand Building",
+    date: "April 5, 2024",
+    author: "Tom Hardy, Audio Content Producer",
+    excerpt: "Explore how starting a podcast can establish thought leadership and build a loyal community around your brand.",
+    imageUrl: "https://picsum.photos/1200/600?random=21",
+    thumbnailUrl: "https://picsum.photos/600/400?random=21",
+    dataAiHint: "microphone podcast",
+    content: `
+      <p class="mb-4 text-lg leading-relaxed">Podcasting has exploded in popularity, offering brands a unique and intimate way to connect with their audience, share expertise, and build a strong community. It's a powerful medium for establishing thought leadership and brand affinity.</p>
+      <h2 class="text-2xl font-semibold mt-6 mb-3">Why Podcasting for Your Brand?</h2>
+      <ul class="list-disc list-inside mb-4 space-y-2 leading-relaxed">
+        <li><strong>Builds Authority:</strong> Share in-depth knowledge and establish yourself as an expert in your field.</li>
+        <li><strong>Creates Intimate Connections:</strong> The human voice fosters a personal connection with listeners.</li>
+        <li><strong>Convenient and Accessible:</strong> Audiences can listen while commuting, exercising, or multitasking.</li>
+        <li><strong>Content Repurposing:</strong> Podcast episodes can be repurposed into blog posts, social media content, and more.</li>
+        <li><strong>Niche Audience Targeting:</strong> Attract a highly engaged audience interested in specific topics.</li>
+      </ul>
+      <figure class="my-6">
+        <img src="https://picsum.photos/800/400?random=112" alt="Podcast recording setup" class="rounded-lg shadow-md mx-auto" data-ai-hint="audio equipment"/>
+        <figcaption class="text-center text-sm text-muted-foreground mt-2">Podcasting allows for deep dives into topics your audience cares about.</figcaption>
+      </figure>
+      <h2 class="text-2xl font-semibold mt-6 mb-3">Getting Started with Your Brand Podcast</h2>
+      <ul class="list-disc list-inside mb-4 space-y-2 leading-relaxed">
+        <li><strong>Define Your Niche and Audience:</strong> What topics will you cover, and who are you trying to reach?</li>
+        <li><strong>Plan Your Content:</strong> Outline episode formats (interviews, solo talks, discussions) and create a content calendar.</li>
+        <li><strong>Invest in Decent Equipment:</strong> Good audio quality is crucial. A good microphone and quiet recording space are key.</li>
+        <li><strong>Distribution:</strong> Submit your podcast to major directories like Apple Podcasts, Spotify, and Google Podcasts.</li>
+        <li><strong>Promote Your Podcast:</strong> Share episodes on your website, social media, and email newsletters.</li>
+      </ul>
+      <blockquote class="border-l-4 border-primary p-4 my-6 bg-muted/50">
+        <p class="italic text-foreground">"A podcast allows your brand to have a consistent voice directly in the ears of your most engaged audience members."</p>
+      </blockquote>
+      <p class="leading-relaxed">While it requires commitment, a well-produced podcast can be an invaluable asset for brand building, lead generation, and fostering a loyal community.</p>
+    `,
+    comments: [],
+  }
 ];
 
 export const getBlogPostBySlug = (slug: string): PostType | undefined => {
@@ -253,30 +472,37 @@ export const getBlogPostBySlug = (slug: string): PostType | undefined => {
 };
 
 export const getAllBlogPosts = (): PostType[] => {
-  // Ensure posts are sorted by date or ID if needed for default listing
-  // For now, returning as is.
-  return blogPostsList;
+  // Sort posts by date in descending order (newest first)
+  // Ensure date strings are correctly parsed by new Date()
+  return [...blogPostsList].sort((a, b) => {
+    const dateA = new Date(a.date).getTime();
+    const dateB = new Date(b.date).getTime();
+    return dateB - dateA;
+  });
 };
 
 export const getTopRatedBlogPosts = (count: number): PostType[] => {
-  const allPosts = getAllBlogPosts();
+  const allPosts = [...blogPostsList]; // Use a copy to avoid mutating the original list
 
   const postsWithAvgRating = allPosts.map(post => {
     const totalRating = post.comments.reduce((acc, comment) => acc + comment.rating, 0);
     const averageRating = post.comments.length > 0 ? totalRating / post.comments.length : 0;
-    return { post, averageRating };
+    return { post, averageRating, commentCount: post.comments.length };
   });
 
-  // Sort by average rating in descending order.
-  // For posts with the same average rating, a secondary sort (e.g., by number of comments or date) could be added.
-  // For now, simple sort by average rating is sufficient.
   postsWithAvgRating.sort((a, b) => {
     if (b.averageRating !== a.averageRating) {
       return b.averageRating - a.averageRating;
     }
-    // Optional: secondary sort by number of comments if ratings are equal
-    return b.post.comments.length - a.post.comments.length;
+    // Secondary sort by number of comments if ratings are equal
+    if (b.commentCount !== a.commentCount) {
+        return b.commentCount - a.commentCount;
+    }
+    // Tertiary sort by date if ratings and comment counts are equal
+    return new Date(b.post.date).getTime() - new Date(a.post.date).getTime();
   });
 
   return postsWithAvgRating.slice(0, count).map(item => item.post);
 };
+
+    

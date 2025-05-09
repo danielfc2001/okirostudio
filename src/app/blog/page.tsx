@@ -1,17 +1,38 @@
 
+"use client";
+
+import { useState } from 'react';
 import Navigation from '@/components/landing/navigation';
 import Footer from '@/components/landing/footer';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, MessageCircle } from 'lucide-react';
+import { ArrowRight, MessageCircle, ChevronLeft, ChevronRight as ChevronRightIcon } from 'lucide-react';
 import { getAllBlogPosts, getTopRatedBlogPosts } from '@/lib/blog-data';
 import { StarRating } from '@/components/ui/star-rating';
+import FormattedDate from '@/components/blog/formatted-date';
+
 
 export default function BlogPage() {
-  const allPosts = getAllBlogPosts();
+  const allPosts = getAllBlogPosts(); // Already sorted by date in getAllBlogPosts
   const topRatedPosts = getTopRatedBlogPosts(4);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 10;
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPages = Math.ceil(allPosts.length / postsPerPage);
+
+  const handleNextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
 
   const renderPostCard = (post: typeof allPosts[0], cardClassName?: string) => {
     const averageRating = post.comments.length > 0
@@ -38,7 +59,7 @@ export default function BlogPage() {
             </Link>
           </CardTitle>
           <CardDescription className="text-xs text-muted-foreground flex flex-wrap items-center gap-x-3 gap-y-1.5">
-            <span>{post.date}</span>
+            <FormattedDate dateString={post.date} formatString="MMMM d, yyyy" placeholder="Loading date..." />
             <span className="hidden sm:inline text-muted-foreground/50">&bull;</span>
             <div className="flex items-center" title={`${averageRating > 0 ? averageRating.toFixed(1) : 'No'} stars`}>
                <StarRating value={averageRating} readonly size={14} iconClassName="text-amber-400 fill-amber-400" /> 
@@ -91,9 +112,27 @@ export default function BlogPage() {
           <h2 className="text-3xl font-bold text-foreground mb-12 text-center sm:text-left">
             All Articles
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {allPosts.map(post => renderPostCard(post))}
-          </div>
+          {currentPosts.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {currentPosts.map(post => renderPostCard(post))}
+            </div>
+          ) : (
+            <p className="text-center text-muted-foreground text-lg">No articles found.</p>
+          )}
+
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center space-x-4 mt-12">
+              <Button onClick={handlePreviousPage} disabled={currentPage === 1} variant="outline">
+                <ChevronLeft className="mr-2 h-4 w-4" /> Previous
+              </Button>
+              <span className="text-sm text-muted-foreground">
+                Page {currentPage} of {totalPages}
+              </span>
+              <Button onClick={handleNextPage} disabled={currentPage === totalPages} variant="outline">
+                Next <ChevronRightIcon className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
+          )}
         </section>
 
       </main>
@@ -101,3 +140,5 @@ export default function BlogPage() {
     </div>
   );
 }
+
+    
