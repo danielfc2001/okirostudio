@@ -56,21 +56,26 @@ export function StarRating({
       {[...Array(count)].map((_, index) => {
         const ratingValue = index + 1;
         const isFilled = ratingValue <= (hoverRating ?? currentRating);
+
+        const starStateClasses = isFilled
+          ? (iconClassName ? "fill-current" : "text-primary fill-primary")
+          : (iconClassName ? "fill-muted-foreground/20" : "text-muted-foreground/50 fill-muted-foreground/20");
+
         return (
           <Star
             key={index}
             size={size}
             className={cn(
               "transition-colors",
-              isFilled ? "fill-primary text-primary" : "text-muted-foreground/50 fill-muted-foreground/20",
               !readonly && onValueChange && "cursor-pointer",
               readonly && "cursor-default",
-              iconClassName
+              iconClassName, // Base styling from iconClassName (e.g., text color for outline)
+              starStateClasses // State-specific styling (fill, or text & fill for default)
             )}
             onMouseMove={!readonly && onValueChange ? () => handleMouseMove(index) : undefined}
             onMouseLeave={!readonly && onValueChange ? handleMouseLeave : undefined}
             onClick={!readonly && onValueChange ? () => handleClick(index) : undefined}
-            aria-hidden="true" // Decorative if readonly or interaction is handled by parent
+            aria-hidden="true" 
           />
         );
       })}
