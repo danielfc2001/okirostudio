@@ -6,8 +6,6 @@ import { ArrowLeft } from "lucide-react";
 import { getBlogPostBySlug, getAllBlogPosts } from "@/lib/blog-data";
 import BlogPostClientContent from "@/components/blog/blog-post-client-content";
 
-export const runtime = "edge";
-
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const postData = getBlogPostBySlug(params.slug);
 
