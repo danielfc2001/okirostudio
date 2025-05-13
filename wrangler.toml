@@ -1,0 +1,4 @@
+name="okiro-studio-landing"
+compatibility_date="2025-05-12"
+compatibility_flags=["nodejs_compat"]
+pages_build_output_dir=".vercel/output/static"

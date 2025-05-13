@@ -20,6 +20,16 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
       >
         OKIRO
       </text>
+      <text
+        x="52"
+        y="42"
+        fontFamily="var(--font-geist-sans), system-ui, sans-serif"
+        fontSize="14"
+        fontWeight="semibold"
+        className=" fill-foreground tracking-[.35em]"
+      >
+        STUDIO
+      </text>
     </svg>
   );
 }

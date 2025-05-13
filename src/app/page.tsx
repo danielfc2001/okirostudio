@@ -1,8 +1,10 @@
-import Navigation from '@/components/landing/navigation';
-import AboutUs from '@/components/landing/about-us';
-import Services from '@/components/landing/services';
-import FeaturedWorks from '@/components/landing/featured-works';
-import Footer from '@/components/landing/footer';
+import Navigation from "@/components/landing/navigation";
+import AboutUs from "@/components/landing/about-us";
+import Services from "@/components/landing/services";
+import FeaturedWorks from "@/components/landing/featured-works";
+import Footer from "@/components/landing/footer";
+
+export const runtime = "edge";
 
 export default function LandingPage() {
   return (

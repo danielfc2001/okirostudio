@@ -194,7 +194,7 @@ export default function Footer() {
           </div>
         </div>
         <p className="w-full text-center text-sm mt-3">
-          &copy; {new Date().getFullYear()} MarkDev Landing. All rights
+          &copy; {new Date().getFullYear()} Okiro Studio Web. All rights
           reserved.
         </p>
       </div>

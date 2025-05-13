@@ -1,11 +1,12 @@
+import Navigation from "@/components/landing/navigation";
+import Footer from "@/components/landing/footer";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+import { getBlogPostBySlug, getAllBlogPosts } from "@/lib/blog-data";
+import BlogPostClientContent from "@/components/blog/blog-post-client-content";
 
-import Navigation from '@/components/landing/navigation';
-import Footer from '@/components/landing/footer';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { ArrowLeft } from 'lucide-react';
-import { getBlogPostBySlug, getAllBlogPosts } from '@/lib/blog-data';
-import BlogPostClientContent from '@/components/blog/blog-post-client-content';
+export const runtime = "edge";
 
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const postData = getBlogPostBySlug(params.slug);
@@ -15,8 +16,12 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       <div className="flex flex-col min-h-screen bg-background">
         <Navigation />
         <main className="flex-grow container mx-auto px-4 py-28 text-center">
-          <h1 className="text-4xl font-bold text-foreground mb-4">Post Not Found</h1>
-          <p className="text-lg text-muted-foreground mb-8">Sorry, the blog post you are looking for does not exist.</p>
+          <h1 className="text-4xl font-bold text-foreground mb-4">
+            Post Not Found
+          </h1>
+          <p className="text-lg text-muted-foreground mb-8">
+            Sorry, the blog post you are looking for does not exist.
+          </p>
           <Button asChild>
             <Link href="/blog">
               <ArrowLeft className="mr-2 h-4 w-4" /> Back to Blog
