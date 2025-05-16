@@ -22,7 +22,7 @@ export default function ServicesPage() {
   );
   const [selectedService, setSelectedService] = useState<string[]>([]);
 
-  const handleCardClick = (e: MouseEvent) => {
+  const handleCardClick = (e: any) => {
     console.log("Card clicked");
     const card = e.currentTarget?.dataset.card;
     console.log(card);
