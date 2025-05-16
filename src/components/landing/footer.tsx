@@ -48,8 +48,12 @@ export default function Footer() {
       >
         <div className="grid items-start grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Copyright */}
-          <div className=" text-center md:text-left">
-            <Link href="/" aria-label="MarkDev Home" className="inline-block">
+          <div className="">
+            <Link
+              href="/"
+              aria-label="MarkDev Home"
+              className="inline-block text-left"
+            >
               <Logo className="h-10 w-auto" />
             </Link>
             <h4 className="font-medium text-foreground mb-3">Contactenos:</h4>
@@ -66,7 +70,43 @@ export default function Footer() {
                   support@okirostudio.com
                 </span>
               </li>
+              <li className="hover:text-primary transition-colors">
+                <span className="flex items-center">
+                  <X className="h-4 w-4 mr-1" />
+                  Calle 10 # 123, La Habana, Cuba
+                </span>
+              </li>
             </ul>
+            <div className="flex justify-center md:justify-start space-x-4 pt-4">
+              <Link
+                href="#"
+                aria-label="Instagram"
+                className="hover:text-primary transition-colors"
+              >
+                <Instagram size={20} />
+              </Link>
+              <Link
+                href="#"
+                aria-label="Facebook"
+                className="hover:text-primary transition-colors"
+              >
+                <Facebook size={20} />
+              </Link>
+              <Link
+                href="#"
+                aria-label="LinkedIn"
+                className="hover:text-primary transition-colors"
+              >
+                <Linkedin size={20} />
+              </Link>
+              <Link
+                href="#"
+                aria-label="Twitter"
+                className="hover:text-primary transition-colors"
+              >
+                <X size={20} />
+              </Link>
+            </div>
           </div>
 
           {/* Quick Links */}
@@ -161,36 +201,6 @@ export default function Footer() {
                 <Mail className="mr-1 h-3 w-3" /> Suscribete
               </Button>
             </form>
-            <div className="flex justify-center md:justify-start space-x-4 pt-4">
-              <Link
-                href="#"
-                aria-label="Instagram"
-                className="hover:text-primary transition-colors"
-              >
-                <Instagram size={20} />
-              </Link>
-              <Link
-                href="#"
-                aria-label="Facebook"
-                className="hover:text-primary transition-colors"
-              >
-                <Facebook size={20} />
-              </Link>
-              <Link
-                href="#"
-                aria-label="LinkedIn"
-                className="hover:text-primary transition-colors"
-              >
-                <Linkedin size={20} />
-              </Link>
-              <Link
-                href="#"
-                aria-label="Twitter"
-                className="hover:text-primary transition-colors"
-              >
-                <X size={20} />
-              </Link>
-            </div>
           </div>
         </div>
         <p className="w-full text-center text-sm mt-3">
