@@ -14,7 +14,8 @@ import { servicesData } from "@/lib/services";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { Badge } from "@/components/ui/badge";
 import { MouseEventHandler, useState } from "react";
-import { X } from "lucide-react";
+import { CircleCheck, X } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 export default function ServicesPage() {
   const [selectedCategory, setSelectedCategory] = useState(
@@ -26,12 +27,17 @@ export default function ServicesPage() {
     console.log("Card clicked");
     const card = e.currentTarget?.dataset.card;
     console.log(card);
-    const services = [...selectedService, card];
-    setSelectedService(services);
-  };
-
-  const onServiceSelectedScrolled = (e: React.SyntheticEvent) => {
-    console.log("scrolled");
+    const match = selectedService.find((service) => service === card);
+    if (!match) {
+      const services = [...selectedService, card];
+      setSelectedService(services);
+    } else {
+      toast({
+        title: "Advertencia",
+        description: "El servicio ya ha sido seleccionado",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -92,7 +98,11 @@ export default function ServicesPage() {
                       <Card
                         data-card={service.name}
                         key={service.name}
-                        className="h-full hover:scale-105 transition-transform cursor-pointer"
+                        className={`h-full hover:scale-105 transition-transform cursor-pointer ${
+                          selectedService.includes(service.name)
+                            ? `border border-primary`
+                            : ``
+                        }`}
                         onClick={handleCardClick}
                       >
                         <CardHeader>
@@ -104,7 +114,10 @@ export default function ServicesPage() {
                           </Badge>
                           {selectedService.includes(service.name) && (
                             <Badge className="text-sm font-medium">
-                              Seleccionado
+                              <span className="hidden md:flex">
+                                Seleccionado
+                              </span>
+                              <CircleCheck className="block md:hidden" />
                             </Badge>
                           )}
                         </CardContent>
@@ -120,10 +133,7 @@ export default function ServicesPage() {
               No hay servicios seleccionados
             </span>
           ) : (
-            <div
-              className="sticky bottom-0 pb-5 z-20 backdrop-blur-lg w-full px-20"
-              onScroll={onServiceSelectedScrolled}
-            >
+            <div className="sticky bottom-0 pb-5 z-20 backdrop-blur-lg w-full px-20">
               <span className="w-full flex justify-center my-3">
                 Costo total aproximado:{" $"}
                 {selectedService
@@ -135,7 +145,7 @@ export default function ServicesPage() {
                   })
                   .reduce((acc, price) => acc + price, 0)}
               </span>
-              <section className="grid grid-cols-2 md:grid-cols-4 gap-4 justify-center mb-3">
+              <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center mb-3">
                 {selectedService.map((service) => {
                   const serviceData = servicesData
                     .flatMap((category) => category.options)
@@ -143,7 +153,7 @@ export default function ServicesPage() {
                   return (
                     <Badge
                       key={service}
-                      className="flex justify-between px-3 py-1 text-sm font-medium"
+                      className="flex justify-between px-3 py-1 text-xs md:text-sm font-medium rounded-sm md:rounded-md"
                     >
                       {`${serviceData?.name} - $${serviceData?.price}`}
                       <Button

@@ -23,19 +23,17 @@ import { getAllBlogPosts, getTopRatedBlogPosts } from "@/lib/blog-data";
 import { StarRating } from "@/components/ui/star-rating";
 import FormattedDate from "@/components/blog/formatted-date";
 
-export const runtime = "edge";
-
 export default function BlogPage() {
   const allPosts = getAllBlogPosts(); // Already sorted by date in getAllBlogPosts
   const topRatedPosts = getTopRatedBlogPosts(4);
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const postsPerPage = 10;
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
-  const totalPages = Math.ceil(allPosts.length / postsPerPage);
+  const totalPages = Math.ceil(allPosts ? allPosts.length / postsPerPage : 1);
 
   const handleNextPage = () => {
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));

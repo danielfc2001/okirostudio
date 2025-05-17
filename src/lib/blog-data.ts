@@ -1,4 +1,3 @@
-
 export interface Comment {
   id: string;
   user: string;
@@ -22,7 +21,6 @@ export interface PostType {
   comments: Comment[];
 }
 
-
 export const blogPostsList: PostType[] = [
   {
     id: 1,
@@ -30,7 +28,8 @@ export const blogPostsList: PostType[] = [
     title: "The Future of AI in Marketing",
     date: "October 26, 2023",
     author: "Jane Doe, Chief Marketing Strategist",
-    excerpt: "Explore how artificial intelligence is revolutionizing marketing strategies, from personalized content to predictive analytics.",
+    excerpt:
+      "Explore how artificial intelligence is revolutionizing marketing strategies, from personalized content to predictive analytics.",
     imageUrl: "https://picsum.photos/1200/600?random=10",
     thumbnailUrl: "https://picsum.photos/600/400?random=10",
     dataAiHint: "AI technology",
@@ -52,8 +51,22 @@ export const blogPostsList: PostType[] = [
       <p class="leading-relaxed">As AI technology continues to evolve, its role in marketing will only become more integral. Businesses that embrace AI-driven strategies will be better positioned to thrive in the competitive digital age.</p>
     `,
     comments: [
-      { id: "c1", user: "Alice W.", avatar: "https://picsum.photos/40/40?random=201", text: "Insightful read! Really helped me understand the potential of AI in our campaigns.", rating: 5, date: "2024-01-10T10:30:00Z" },
-      { id: "c2", user: "Bob T.", avatar: "https://picsum.photos/40/40?random=202", text: "Good points, but I think the ethics of AI in marketing could have been explored more deeply.", rating: 3, date: "2024-01-11T14:45:00Z" },
+      {
+        id: "c1",
+        user: "Alice W.",
+        avatar: "https://picsum.photos/40/40?random=201",
+        text: "Insightful read! Really helped me understand the potential of AI in our campaigns.",
+        rating: 5,
+        date: "2024-01-10T10:30:00Z",
+      },
+      {
+        id: "c2",
+        user: "Bob T.",
+        avatar: "https://picsum.photos/40/40?random=202",
+        text: "Good points, but I think the ethics of AI in marketing could have been explored more deeply.",
+        rating: 3,
+        date: "2024-01-11T14:45:00Z",
+      },
     ],
   },
   {
@@ -62,7 +75,8 @@ export const blogPostsList: PostType[] = [
     title: "Maximizing ROI with Social Media Advertising",
     date: "November 5, 2023",
     author: "John Smith, Head of Digital Ads",
-    excerpt: "Learn effective tactics to boost your return on investment through targeted social media ad campaigns.",
+    excerpt:
+      "Learn effective tactics to boost your return on investment through targeted social media ad campaigns.",
     imageUrl: "https://picsum.photos/1200/600?random=11",
     thumbnailUrl: "https://picsum.photos/600/400?random=11",
     dataAiHint: "social media",
@@ -86,7 +100,14 @@ export const blogPostsList: PostType[] = [
       <p class="leading-relaxed">By implementing these strategies, businesses can significantly improve their social media advertising ROI and achieve their marketing goals effectively.</p>
     `,
     comments: [
-      { id: "c3", user: "Charlie M.", avatar: "https://picsum.photos/40/40?random=203", text: "Very helpful for my small business campaigns. The A/B testing tips were gold!", rating: 4, date: "2024-02-05T09:00:00Z" },
+      {
+        id: "c3",
+        user: "Charlie M.",
+        avatar: "https://picsum.photos/40/40?random=203",
+        text: "Very helpful for my small business campaigns. The A/B testing tips were gold!",
+        rating: 4,
+        date: "2024-02-05T09:00:00Z",
+      },
     ],
   },
   {
@@ -95,7 +116,8 @@ export const blogPostsList: PostType[] = [
     title: "Content is King: Crafting Engaging Blog Posts",
     date: "November 15, 2023",
     author: "Alice Brown, Senior Content Manager",
-    excerpt: "Discover the secrets to writing compelling blog content that captivates your audience and drives traffic.",
+    excerpt:
+      "Discover the secrets to writing compelling blog content that captivates your audience and drives traffic.",
     imageUrl: "https://picsum.photos/1200/600?random=12",
     thumbnailUrl: "https://picsum.photos/600/400?random=12",
     dataAiHint: "writing content",
@@ -128,7 +150,8 @@ export const blogPostsList: PostType[] = [
     title: "SEO Trends to Watch in 2024",
     date: "December 1, 2023",
     author: "David Green, SEO Specialist",
-    excerpt: "Stay ahead of the curve with our insights into the latest SEO trends that will shape digital marketing next year.",
+    excerpt:
+      "Stay ahead of the curve with our insights into the latest SEO trends that will shape digital marketing next year.",
     imageUrl: "https://picsum.photos/1200/600?random=13",
     thumbnailUrl: "https://picsum.photos/600/400?random=13",
     dataAiHint: "SEO chart",
@@ -152,9 +175,30 @@ export const blogPostsList: PostType[] = [
       <p class="leading-relaxed">Adapting to these trends will help businesses maintain a competitive edge in the ever-changing search landscape of 2024 and beyond.</p>
     `,
     comments: [
-        { id: "c4", user: "David K.", avatar: "https://picsum.photos/40/40?random=204", text: "Up-to-date info, thanks! E-E-A-T is definitely the way to go.", rating: 5, date: "2024-03-15T11:00:00Z" },
-        { id: "c5", user: "Eve L.", avatar: "https://picsum.photos/40/40?random=205", text: "Great summary of the E-E-A-T principles.", rating: 4, date: "2024-03-16T16:20:00Z" },
-        { id: "c6", user: "Frank P.", avatar: "https://picsum.photos/40/40?random=206", text: "Wondering how AI search will impact keyword strategies in the long run.", rating: 3, date: "2024-03-17T08:50:00Z" },
+      {
+        id: "c4",
+        user: "David K.",
+        avatar: "https://picsum.photos/40/40?random=204",
+        text: "Up-to-date info, thanks! E-E-A-T is definitely the way to go.",
+        rating: 5,
+        date: "2024-03-15T11:00:00Z",
+      },
+      {
+        id: "c5",
+        user: "Eve L.",
+        avatar: "https://picsum.photos/40/40?random=205",
+        text: "Great summary of the E-E-A-T principles.",
+        rating: 4,
+        date: "2024-03-16T16:20:00Z",
+      },
+      {
+        id: "c6",
+        user: "Frank P.",
+        avatar: "https://picsum.photos/40/40?random=206",
+        text: "Wondering how AI search will impact keyword strategies in the long run.",
+        rating: 3,
+        date: "2024-03-17T08:50:00Z",
+      },
     ],
   },
   {
@@ -163,7 +207,8 @@ export const blogPostsList: PostType[] = [
     title: "The Power of Email Marketing Automation",
     date: "December 12, 2023",
     author: "Sarah Miller, Email Marketing Lead",
-    excerpt: "Unlock the potential of email marketing automation to nurture leads and build lasting customer relationships.",
+    excerpt:
+      "Unlock the potential of email marketing automation to nurture leads and build lasting customer relationships.",
     imageUrl: "https://picsum.photos/1200/600?random=14",
     thumbnailUrl: "https://picsum.photos/600/400?random=14",
     dataAiHint: "email inbox",
@@ -197,7 +242,14 @@ export const blogPostsList: PostType[] = [
       <p class="leading-relaxed">By leveraging email marketing automation, businesses can create more meaningful interactions with their audience, improve efficiency, and ultimately drive better results.</p>
     `,
     comments: [
-        { id: "c7", user: "Grace H.", avatar: "https://picsum.photos/40/40?random=207", text: "Automation saved us so much time! The welcome series idea is great.", rating: 5, date: "2024-04-01T12:00:00Z" },
+      {
+        id: "c7",
+        user: "Grace H.",
+        avatar: "https://picsum.photos/40/40?random=207",
+        text: "Automation saved us so much time! The welcome series idea is great.",
+        rating: 5,
+        date: "2024-04-01T12:00:00Z",
+      },
     ],
   },
   {
@@ -206,7 +258,8 @@ export const blogPostsList: PostType[] = [
     title: "Video Marketing: Why It's Essential for Your Brand",
     date: "December 20, 2023",
     author: "Mike Johnson, Head of Video Production",
-    excerpt: "Understand the impact of video marketing and how to integrate it effectively into your overall strategy.",
+    excerpt:
+      "Understand the impact of video marketing and how to integrate it effectively into your overall strategy.",
     imageUrl: "https://picsum.photos/1200/600?random=15",
     thumbnailUrl: "https://picsum.photos/600/400?random=15",
     dataAiHint: "video play",
@@ -242,8 +295,22 @@ export const blogPostsList: PostType[] = [
       <p class="leading-relaxed">Integrating video into your marketing strategy is no longer a luxury but a necessity for staying competitive and effectively engaging your audience in the digital age.</p>
     `,
     comments: [
-        { id: "c8", user: "Heidi N.", avatar: "https://picsum.photos/40/40?random=208", text: "Videos really boost engagement on our social channels. Thanks for the tips!", rating: 4, date: "2024-04-20T10:15:00Z" },
-        { id: "c9", user: "Ivan S.", avatar: "https://picsum.photos/40/40?random=209", text: "Good overview of different video types. I'm planning to try testimonial videos next.", rating: 4, date: "2024-04-21T17:30:00Z" },
+      {
+        id: "c8",
+        user: "Heidi N.",
+        avatar: "https://picsum.photos/40/40?random=208",
+        text: "Videos really boost engagement on our social channels. Thanks for the tips!",
+        rating: 4,
+        date: "2024-04-20T10:15:00Z",
+      },
+      {
+        id: "c9",
+        user: "Ivan S.",
+        avatar: "https://picsum.photos/40/40?random=209",
+        text: "Good overview of different video types. I'm planning to try testimonial videos next.",
+        rating: 4,
+        date: "2024-04-21T17:30:00Z",
+      },
     ],
   },
   {
@@ -252,7 +319,8 @@ export const blogPostsList: PostType[] = [
     title: "Effective Influencer Marketing Strategies",
     date: "January 10, 2024",
     author: "Olivia Chen, Social Media Manager",
-    excerpt: "Navigate the world of influencer marketing and discover strategies for successful collaborations.",
+    excerpt:
+      "Navigate the world of influencer marketing and discover strategies for successful collaborations.",
     imageUrl: "https://picsum.photos/1200/600?random=16",
     thumbnailUrl: "https://picsum.photos/600/400?random=16",
     dataAiHint: "influencer person",
@@ -276,7 +344,14 @@ export const blogPostsList: PostType[] = [
       <p class="leading-relaxed">By approaching influencer marketing strategically, brands can tap into powerful voices to connect with their target audience in meaningful ways.</p>
     `,
     comments: [
-      { id: "c10", user: "Kevin B.", avatar: "https://picsum.photos/40/40?random=210", text: "Great insights on micro-influencers. We've had good success with them!", rating: 5, date: "2024-05-01T09:20:00Z" },
+      {
+        id: "c10",
+        user: "Kevin B.",
+        avatar: "https://picsum.photos/40/40?random=210",
+        text: "Great insights on micro-influencers. We've had good success with them!",
+        rating: 5,
+        date: "2024-05-01T09:20:00Z",
+      },
     ],
   },
   {
@@ -285,7 +360,8 @@ export const blogPostsList: PostType[] = [
     title: "Data Privacy in Marketing: Navigating 2024",
     date: "January 25, 2024",
     author: "Laura Guzman, Legal Counsel",
-    excerpt: "Understand the evolving landscape of data privacy regulations and how they impact your marketing efforts.",
+    excerpt:
+      "Understand the evolving landscape of data privacy regulations and how they impact your marketing efforts.",
     imageUrl: "https://picsum.photos/1200/600?random=17",
     thumbnailUrl: "https://picsum.photos/600/400?random=17",
     dataAiHint: "data security",
@@ -307,8 +383,22 @@ export const blogPostsList: PostType[] = [
       <p class="leading-relaxed">Marketers who proactively adapt to the evolving privacy landscape will build stronger, more trusting relationships with their customers.</p>
     `,
     comments: [
-      { id: "c11", user: "Mark R.", avatar: "https://picsum.photos/40/40?random=211", text: "A very important topic. Thanks for simplifying it.", rating: 4, date: "2024-05-10T14:00:00Z" },
-      { id: "c12", user: "Nancy J.", avatar: "https://picsum.photos/40/40?random=212", text: "The point on first-party data is spot on.", rating: 5, date: "2024-05-11T11:30:00Z" },
+      {
+        id: "c11",
+        user: "Mark R.",
+        avatar: "https://picsum.photos/40/40?random=211",
+        text: "A very important topic. Thanks for simplifying it.",
+        rating: 4,
+        date: "2024-05-10T14:00:00Z",
+      },
+      {
+        id: "c12",
+        user: "Nancy J.",
+        avatar: "https://picsum.photos/40/40?random=212",
+        text: "The point on first-party data is spot on.",
+        rating: 5,
+        date: "2024-05-11T11:30:00Z",
+      },
     ],
   },
   {
@@ -317,7 +407,8 @@ export const blogPostsList: PostType[] = [
     title: "The Importance of UX/UI in Conversion Rates",
     date: "February 10, 2024",
     author: "Emily White, Lead UX Designer",
-    excerpt: "Discover how intuitive design and seamless user experience directly impact your website's conversion rates.",
+    excerpt:
+      "Discover how intuitive design and seamless user experience directly impact your website's conversion rates.",
     imageUrl: "https://picsum.photos/1200/600?random=18",
     thumbnailUrl: "https://picsum.photos/600/400?random=18",
     dataAiHint: "website design",
@@ -341,7 +432,14 @@ export const blogPostsList: PostType[] = [
       <p class="leading-relaxed">Investing in quality UX/UI design is investing in your conversion rates. By prioritizing the user, you create a platform that not only attracts visitors but also effectively converts them into customers.</p>
     `,
     comments: [
-      { id: "c13", user: "Oscar P.", avatar: "https://picsum.photos/40/40?random=213", text: "Absolutely true. We saw a jump in conversions after our redesign.", rating: 5, date: "2024-05-15T16:10:00Z" },
+      {
+        id: "c13",
+        user: "Oscar P.",
+        avatar: "https://picsum.photos/40/40?random=213",
+        text: "Absolutely true. We saw a jump in conversions after our redesign.",
+        rating: 5,
+        date: "2024-05-15T16:10:00Z",
+      },
     ],
   },
   {
@@ -350,7 +448,8 @@ export const blogPostsList: PostType[] = [
     title: "Boosting Engagement with Interactive Content",
     date: "February 28, 2024",
     author: "Chris Taylor, Content Strategist",
-    excerpt: "Move beyond static content. Learn how quizzes, polls, and calculators can significantly boost user engagement.",
+    excerpt:
+      "Move beyond static content. Learn how quizzes, polls, and calculators can significantly boost user engagement.",
     imageUrl: "https://picsum.photos/1200/600?random=19",
     thumbnailUrl: "https://picsum.photos/600/400?random=19",
     dataAiHint: "interactive quiz",
@@ -391,7 +490,8 @@ export const blogPostsList: PostType[] = [
     title: "Level Up Your Marketing: The Power of Gamification",
     date: "March 15, 2024",
     author: "Rachel Green, Engagement Specialist",
-    excerpt: "Discover how game mechanics can be applied to marketing to drive engagement, loyalty, and conversions.",
+    excerpt:
+      "Discover how game mechanics can be applied to marketing to drive engagement, loyalty, and conversions.",
     imageUrl: "https://picsum.photos/1200/600?random=20",
     thumbnailUrl: "https://picsum.photos/600/400?random=20",
     dataAiHint: "game controller",
@@ -423,7 +523,14 @@ export const blogPostsList: PostType[] = [
       <p class="leading-relaxed">When implemented thoughtfully, gamification can transform your marketing efforts, fostering deeper engagement and driving tangible business results.</p>
     `,
     comments: [
-        { id: "c14", user: "Sam T.", avatar: "https://picsum.photos/40/40?random=214", text: "We're looking into gamifying our loyalty program. This is very helpful!", rating: 4, date: "2024-05-20T10:00:00Z" },
+      {
+        id: "c14",
+        user: "Sam T.",
+        avatar: "https://picsum.photos/40/40?random=214",
+        text: "We're looking into gamifying our loyalty program. This is very helpful!",
+        rating: 4,
+        date: "2024-05-20T10:00:00Z",
+      },
     ],
   },
   {
@@ -432,7 +539,8 @@ export const blogPostsList: PostType[] = [
     title: "The Rise of Podcasting for Brand Building",
     date: "April 5, 2024",
     author: "Tom Hardy, Audio Content Producer",
-    excerpt: "Explore how starting a podcast can establish thought leadership and build a loyal community around your brand.",
+    excerpt:
+      "Explore how starting a podcast can establish thought leadership and build a loyal community around your brand.",
     imageUrl: "https://picsum.photos/1200/600?random=21",
     thumbnailUrl: "https://picsum.photos/600/400?random=21",
     dataAiHint: "microphone podcast",
@@ -464,11 +572,11 @@ export const blogPostsList: PostType[] = [
       <p class="leading-relaxed">While it requires commitment, a well-produced podcast can be an invaluable asset for brand building, lead generation, and fostering a loyal community.</p>
     `,
     comments: [],
-  }
+  },
 ];
 
 export const getBlogPostBySlug = (slug: string): PostType | undefined => {
-  return blogPostsList.find(p => p.slug === slug);
+  return blogPostsList.find((p) => p.slug === slug);
 };
 
 export const getAllBlogPosts = (): PostType[] => {
@@ -484,9 +592,13 @@ export const getAllBlogPosts = (): PostType[] => {
 export const getTopRatedBlogPosts = (count: number): PostType[] => {
   const allPosts = [...blogPostsList]; // Use a copy to avoid mutating the original list
 
-  const postsWithAvgRating = allPosts.map(post => {
-    const totalRating = post.comments.reduce((acc, comment) => acc + comment.rating, 0);
-    const averageRating = post.comments.length > 0 ? totalRating / post.comments.length : 0;
+  const postsWithAvgRating = allPosts.map((post) => {
+    const totalRating = post.comments.reduce(
+      (acc, comment) => acc + comment.rating,
+      0
+    );
+    const averageRating =
+      post.comments.length > 0 ? totalRating / post.comments.length : 0;
     return { post, averageRating, commentCount: post.comments.length };
   });
 
@@ -496,13 +608,11 @@ export const getTopRatedBlogPosts = (count: number): PostType[] => {
     }
     // Secondary sort by number of comments if ratings are equal
     if (b.commentCount !== a.commentCount) {
-        return b.commentCount - a.commentCount;
+      return b.commentCount - a.commentCount;
     }
     // Tertiary sort by date if ratings and comment counts are equal
     return new Date(b.post.date).getTime() - new Date(a.post.date).getTime();
   });
 
-  return postsWithAvgRating.slice(0, count).map(item => item.post);
+  return postsWithAvgRating.slice(0, count).map((item) => item.post);
 };
-
-    

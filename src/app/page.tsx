@@ -5,8 +5,6 @@ import FeaturedWorks from "@/components/landing/featured-works";
 import Footer from "@/components/landing/footer";
 import OurTeam from "@/components/landing/OurTeam";
 
-export const runtime = "edge";
-
 export default function LandingPage() {
   return (
     <div className="flex flex-col min-h-screen">

@@ -6,8 +6,12 @@ import { ArrowLeft } from "lucide-react";
 import { getBlogPostBySlug, getAllBlogPosts } from "@/lib/blog-data";
 import BlogPostClientContent from "@/components/blog/blog-post-client-content";
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const postData = getBlogPostBySlug(params.slug);
+export default async function BlogPostPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const postData = await getBlogPostBySlug(params.slug);
 
   if (!postData) {
     return (
@@ -42,7 +46,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 }
 
 export async function generateStaticParams() {
-  const posts = getAllBlogPosts();
+  const posts = await getAllBlogPosts();
   return posts.map((post) => ({
     slug: post.slug,
   }));
