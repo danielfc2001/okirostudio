@@ -13,9 +13,19 @@ import {
 import { servicesData } from "@/lib/services";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { Badge } from "@/components/ui/badge";
-import { MouseEventHandler, useState } from "react";
+import { useState } from "react";
 import { CircleCheck, X } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import WhatsappIcon from "@/components/icons/whatsapp-icon";
+import MailIcon from "@/components/icons/mail-icon";
+import { DialogClose } from "@radix-ui/react-dialog";
 
 export default function ServicesPage() {
   const [selectedCategory, setSelectedCategory] = useState(
@@ -38,6 +48,15 @@ export default function ServicesPage() {
         variant: "destructive",
       });
     }
+  };
+
+  const handleRemoveServices = () => {
+    setSelectedService([]);
+    toast({
+      title: "Servicios removidos",
+      description: "Los servicios han sido removidos correctamente.",
+      variant: "destructive",
+    });
   };
 
   return (
@@ -171,6 +190,71 @@ export default function ServicesPage() {
                   );
                 })}
               </section>
+              <div className="flex justify-center items-center gap-2">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="bg-red-500 hover:bg-red-600">
+                      Cancelar solicitud
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogTitle>Remover servicios</DialogTitle>
+                    <DialogDescription>
+                      Estas seguro que deseas remover los servicios
+                      seleccionados?.
+                    </DialogDescription>
+                    <Button
+                      className="bg-red-500 hover:bg-red-600"
+                      onClick={handleRemoveServices}
+                    >
+                      Remover
+                    </Button>
+                    <DialogClose asChild>
+                      <Button>Cerrar</Button>
+                    </DialogClose>
+                  </DialogContent>
+                </Dialog>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="bg-primary text-primary-foreground hover:bg-primary/80">
+                      Enviar servicios
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogTitle>Plan de servicios</DialogTitle>
+                    <DialogDescription>blablabla</DialogDescription>
+                    <h2>Los servicios seleccionados son:</h2>
+                    <section>
+                      <ul className="text-sm list-disc list-inside">
+                        {selectedService.map((service) => (
+                          <li key={service}>{service}</li>
+                        ))}
+                      </ul>
+                    </section>
+                    <span className="w-full flex justify-center my-3">
+                      Costo total aproximado:{" $"}
+                      {selectedService
+                        .map((service) => {
+                          const serviceData = servicesData
+                            .flatMap((category) => category.options)
+                            .find((s) => s.name === service);
+                          return serviceData?.price || 0;
+                        })
+                        .reduce((acc, price) => acc + price, 0)}
+                    </span>
+                    <Button className="flex justify-center items-center">
+                      <MailIcon width={24} height={24} />
+                      Recibir correo
+                    </Button>
+                    <span className="text-center text-muted-foreground underline">
+                      o
+                    </span>
+                    <Button className="flex justify-center items-center">
+                      <WhatsappIcon width={24} height={24} /> Ir a Whatsapp
+                    </Button>
+                  </DialogContent>
+                </Dialog>
+              </div>
             </div>
           )}
         </section>

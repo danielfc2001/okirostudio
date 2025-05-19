@@ -88,3 +88,11 @@ html {
   opacity: 1;
   transform: translateY(0);
 }
+
+.cls-1 {
+  fill: #fff;
+}
+
+.cls-2 {
+  fill: none;
+}
