@@ -11,7 +11,7 @@ export default async function BlogPostPage({
 }: {
   params: { slug: string };
 }) {
-  const postData = await getBlogPostBySlug(params.slug);
+  const postData = getBlogPostBySlug(params.slug);
 
   if (!postData) {
     return (

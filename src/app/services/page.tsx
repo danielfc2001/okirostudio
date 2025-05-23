@@ -127,18 +127,23 @@ export default function ServicesPage() {
                         <CardHeader>
                           <CardTitle>{service.name}</CardTitle>
                         </CardHeader>
-                        <CardContent className="flex justify-between items-center">
-                          <Badge className="text-sm font-medium">
-                            {`Price: $${service.price.toString()}`}
-                          </Badge>
-                          {selectedService.includes(service.name) && (
+                        <CardContent className="flex flex-col justify-between items-right">
+                          <CardDescription className="text-sm text-muted-foreground">
+                            {service.description}
+                          </CardDescription>
+                          <div className="flex flex-row justify-between items-center mt-3">
                             <Badge className="text-sm font-medium">
-                              <span className="hidden md:flex">
-                                Seleccionado
-                              </span>
-                              <CircleCheck className="block md:hidden" />
+                              {`Desde: $${service.price.toString()}`}
                             </Badge>
-                          )}
+                            {selectedService.includes(service.name) && (
+                              <Badge className="text-sm font-medium">
+                                <span className="hidden md:flex">
+                                  Seleccionado
+                                </span>
+                                <CircleCheck className="block md:hidden" />
+                              </Badge>
+                            )}
+                          </div>
                         </CardContent>
                       </Card>
                     ))}
