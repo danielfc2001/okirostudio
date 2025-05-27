@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { servicesData } from "@/lib/services";
+import { OptionsType, servicesData } from "@/lib/services";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
@@ -32,6 +32,12 @@ export default function ServicesPage() {
     servicesData[0].service
   );
   const [selectedService, setSelectedService] = useState<string[]>([]);
+
+  const [searchServicesResult, setSearchServicesResult] = useState<
+    OptionsType[]
+  >([]);
+
+  const [currentSearchTerm, setCurrentSearchTerm] = useState<string>("");
 
   const handleCardClick = (e: any) => {
     console.log("Card clicked");
@@ -59,6 +65,50 @@ export default function ServicesPage() {
     });
   };
 
+  const handleSearchServices = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const searchInput = e.currentTarget.querySelector(
+      "input[type='search']"
+    ) as HTMLInputElement;
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    const data = servicesData.flatMap((category) => category.options);
+    setCurrentSearchTerm(searchTerm);
+    if (searchTerm === "") {
+      setSearchServicesResult([]);
+      toast({
+        title: "Búsqueda vacia.",
+        description: "No se ha ingresado un término de búsqueda.",
+        variant: "destructive",
+      });
+      return;
+    }
+    const filteredServices = data.filter(
+      (service) =>
+        service.name.toLowerCase().includes(searchTerm) ||
+        service.description.toLowerCase().includes(searchTerm)
+    );
+    if (filteredServices.length === 0) {
+      setSearchServicesResult([]);
+      toast({
+        title: "No se encontraron resultados",
+        description: `No se encontraron servicios que coincidan con "${searchTerm}".`,
+        variant: "destructive",
+      });
+      return;
+    } else {
+      setSearchServicesResult(
+        filteredServices.map((service) => {
+          return {
+            category:
+              servicesData.find((cat) => cat.options.includes(service))
+                ?.service || "no category",
+            ...service,
+          };
+        })
+      );
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Navigation />
@@ -75,7 +125,10 @@ export default function ServicesPage() {
           </p>
         </header>
         <section className="flex flex-col">
-          <form className="flex flex-row items-center justify-center gap-5 w-full">
+          <form
+            onSubmit={handleSearchServices}
+            className="flex flex-row items-center justify-center gap-5 w-full"
+          >
             <input
               type="search"
               className="w-2/3 bg-transparent border border-gray-500  px-3 py-2 rounded-md"
@@ -84,73 +137,123 @@ export default function ServicesPage() {
             <Button>Buscar</Button>
           </form>
           <section className="flex flex-row col-span-3">
-            <Tabs
-              defaultValue={selectedCategory}
-              onValueChange={setSelectedCategory}
-              className="w-full"
-            >
-              <div className="my-8">
-                <TabsList className="flex flex-wrap h-auto gap-2 justify-center">
-                  {servicesData.map((category) => (
-                    <TabsTrigger
-                      key={category.service}
-                      value={category.service}
-                      className="px-4 py-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+            {searchServicesResult.length > 0 ? (
+              <div className="">
+                <h2 className="flex flex-col md:flex-row gap-2 justify-center items-center text-2xl font-bold text-foreground text-center my-5">
+                  Resultados de la búsqueda para:{" "}
+                  <span className="text-primary">{currentSearchTerm}</span>
+                  <span className="flex items-center gap-2 text-sm text-primary">
+                    ( {searchServicesResult.length} Coincidencias)
+                  </span>
+                </h2>
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 px-20 mt-5">
+                  {searchServicesResult.map((service) => (
+                    <Card
+                      data-card={service.name}
+                      key={service.name}
+                      className={`h-full hover:scale-105 transition-transform cursor-pointer ${
+                        selectedService.includes(service.name)
+                          ? `border border-primary`
+                          : ``
+                      }`}
+                      onClick={handleCardClick}
                     >
-                      {category.service}
-                    </TabsTrigger>
-                  ))}
-                </TabsList>
-              </div>
-              {servicesData.map((category) => (
-                <TabsContent
-                  key={category.service}
-                  value={category.service}
-                  className="mt-0"
-                >
-                  {/*                   <div className="text-center mb-8">
-                    <h2 className="text-2xl font-bold">{category.service}</h2>
-                  </div> */}
-
-                  <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 px-20">
-                    {category.options.map((service) => (
-                      <Card
-                        data-card={service.name}
-                        key={service.name}
-                        className={`h-full hover:scale-105 transition-transform cursor-pointer ${
-                          selectedService.includes(service.name)
-                            ? `border border-primary`
-                            : ``
-                        }`}
-                        onClick={handleCardClick}
-                      >
-                        <CardHeader>
-                          <CardTitle>{service.name}</CardTitle>
-                        </CardHeader>
-                        <CardContent className="flex flex-col justify-between items-right">
-                          <CardDescription className="text-sm text-muted-foreground">
-                            {service.description}
-                          </CardDescription>
-                          <div className="flex flex-row justify-between items-center mt-3">
+                      <CardHeader>
+                        <CardTitle>{service.name}</CardTitle>
+                      </CardHeader>
+                      <CardContent className="flex flex-col justify-between items-right">
+                        <span className="text-sm text-muted-foreground">
+                          Categoria:
+                          <span className="ml-2 text-primary">
+                            {service.category}
+                          </span>
+                        </span>
+                        <CardDescription className="text-sm text-muted-foreground">
+                          {service.description}
+                        </CardDescription>
+                        <div className="flex flex-row justify-between items-center mt-3">
+                          <Badge className="text-sm font-medium">
+                            {`Desde: $${service.price.toString()}`}
+                          </Badge>
+                          {selectedService.includes(service.name) && (
                             <Badge className="text-sm font-medium">
-                              {`Desde: $${service.price.toString()}`}
+                              <span className="hidden md:flex">
+                                Seleccionado
+                              </span>
+                              <CircleCheck className="block md:hidden" />
                             </Badge>
-                            {selectedService.includes(service.name) && (
-                              <Badge className="text-sm font-medium">
-                                <span className="hidden md:flex">
-                                  Seleccionado
-                                </span>
-                                <CircleCheck className="block md:hidden" />
-                              </Badge>
-                            )}
-                          </div>
-                        </CardContent>
-                      </Card>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <Tabs
+                defaultValue={selectedCategory}
+                onValueChange={setSelectedCategory}
+                className="w-full"
+              >
+                <div className="my-8">
+                  <TabsList className="flex flex-wrap h-auto gap-2 justify-center">
+                    {servicesData.map((category) => (
+                      <TabsTrigger
+                        key={category.service}
+                        value={category.service}
+                        className="px-4 py-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                      >
+                        {category.service}
+                      </TabsTrigger>
                     ))}
-                  </div>
-                </TabsContent>
-              ))}
-            </Tabs>
+                  </TabsList>
+                </div>
+                {servicesData.map((category) => (
+                  <TabsContent
+                    key={category.service}
+                    value={category.service}
+                    className="mt-0"
+                  >
+                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 px-20">
+                      {category.options.map((service) => (
+                        <Card
+                          data-card={service.name}
+                          key={service.name}
+                          className={`h-full hover:scale-105 transition-transform cursor-pointer ${
+                            selectedService.includes(service.name)
+                              ? `border border-primary`
+                              : ``
+                          }`}
+                          onClick={handleCardClick}
+                        >
+                          <CardHeader>
+                            <CardTitle>{service.name}</CardTitle>
+                          </CardHeader>
+                          <CardContent className="flex flex-col justify-between items-right">
+                            <CardDescription className="text-sm text-muted-foreground">
+                              {service.description}
+                            </CardDescription>
+                            <div className="flex flex-row justify-between items-center mt-3">
+                              <Badge className="text-sm font-medium">
+                                {`Desde: $${service.price.toString()}`}
+                              </Badge>
+                              {selectedService.includes(service.name) && (
+                                <Badge className="text-sm font-medium">
+                                  <span className="hidden md:flex">
+                                    Seleccionado
+                                  </span>
+                                  <CircleCheck className="block md:hidden" />
+                                </Badge>
+                              )}
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  </TabsContent>
+                ))}
+              </Tabs>
+            )}
           </section>
           {selectedService.length === 0 ? (
             <span className="w-full text-center my-3 text-muted-foreground">
