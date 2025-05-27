@@ -2,11 +2,19 @@ export interface Features {
   vector: string;
   name: string;
   description: string;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
-export default function FeatureCard({ vector, name, description }: Features) {
+export default function FeatureCard({
+  vector,
+  name,
+  description,
+  className,
+  style,
+}: Features) {
   return (
-    <article className="bg-accent-foreground flex flex-col items-center border px-5 py-10 rounded-lg shadow-md flex-grow">
+    <article className={className} style={style}>
       <div
         className="bg-accent p-5 rounded-full border-muted-foreground mb-4"
         dangerouslySetInnerHTML={{ __html: vector }}

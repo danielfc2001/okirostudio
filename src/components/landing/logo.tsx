@@ -38,7 +38,6 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
       viewBox="0 0 543.17 200.87"
       {...props}
     >
-      <defs></defs>
       <g id="Capa_1-2" data-name="Capa 1">
         <g>
           <path

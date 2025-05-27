@@ -1,11 +1,17 @@
+"use client";
 
-"use client"
-
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { CheckCircle2, Briefcase, Target, Lightbulb } from "lucide-react"
-import { useScrollAnimation } from "@/hooks/use-scroll-animation"
-import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { CheckCircle2, Briefcase, Target, Lightbulb } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { cn } from "@/lib/utils";
 
 const servicePackages = [
   {
@@ -19,7 +25,7 @@ const servicePackages = [
       "Custom Strategy Development",
       "Performance Tracking",
     ],
-    dataAiHint: "strategy chart"
+    dataAiHint: "strategy chart",
   },
   {
     icon: <Briefcase className="h-10 w-10 text-primary mb-4" />,
@@ -32,7 +38,7 @@ const servicePackages = [
       "Email Marketing Campaigns",
       "Video Production Basics",
     ],
-    dataAiHint: "writing desk"
+    dataAiHint: "writing desk",
   },
   {
     icon: <Target className="h-10 w-10 text-primary mb-4" />,
@@ -45,30 +51,35 @@ const servicePackages = [
       "A/B Testing & Optimization",
       "Detailed Reporting",
     ],
-    dataAiHint: "dashboard analytics"
+    dataAiHint: "dashboard analytics",
   },
-]
+];
 
 export default function Services() {
-  const { ref, isVisible } = useScrollAnimation<HTMLDivElement>()
+  const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
 
   return (
     <section id="services" ref={ref} className="py-20 bg-secondary">
-      <div className={cn(
+      <div
+        className={cn(
           "container mx-auto px-4 scroll-animate",
           isVisible && "scroll-animate-visible"
-        )}>
+        )}
+      >
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Our Service Packages</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+            Our Service Packages
+          </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Choose the perfect plan to elevate your marketing efforts and achieve your business goals.
+            Choose the perfect plan to elevate your marketing efforts and
+            achieve your business goals.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {servicePackages.map((pkg, index) => (
-            <Card 
-              key={index} 
+            <Card
+              key={index}
               className={cn(
                 "flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300 scroll-animate",
                 isVisible && "scroll-animate-visible"
@@ -81,7 +92,9 @@ export default function Services() {
                 <CardTitle className="text-2xl">{pkg.title}</CardTitle>
                 <CardDescription className="text-3xl font-semibold text-primary">
                   {pkg.price}
-                  <span className="text-sm font-normal text-muted-foreground">{pkg.period}</span>
+                  <span className="text-sm font-normal text-muted-foreground">
+                    {pkg.period}
+                  </span>
                 </CardDescription>
               </CardHeader>
               <CardContent className="flex-grow">
@@ -104,5 +117,5 @@ export default function Services() {
         </div>
       </div>
     </section>
-  )
+  );
 }

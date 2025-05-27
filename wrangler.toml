@@ -5,3 +5,6 @@
   [assets]
   directory = ".open-next/assets"
   binding = "ASSETS"
+  routes = [
+  { pattern = "okirostudio.com", custom_domain = true }
+  ]

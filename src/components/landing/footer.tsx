@@ -3,13 +3,12 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { Logo } from "./logo";
 import { Facebook, Instagram, Linkedin, Phone, X, Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { cn } from "@/lib/utils";
+import LogoReduced from "./logo-reduced";
 
 export default function Footer() {
   const { toast } = useToast();
@@ -46,16 +45,18 @@ export default function Footer() {
           isVisible && "scroll-animate-visible"
         )}
       >
-        <div className="grid items-start grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Logo and Copyright */}
-          <div className="">
+        <div className="grid items-start grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-2">
+          <div className="flex flex-col items-center md:items-start">
             <Link
               href="/"
               aria-label="MarkDev Home"
               className="inline-block text-left"
             >
-              <Logo className="h-10 w-auto" />
+              <LogoReduced className="min-w-48" />
             </Link>
+          </div>
+          {/* Logo and Copyright */}
+          <div className="flex flex-col items-center md:items-start text-center">
             <h4 className="font-medium text-foreground mb-3">Contactenos:</h4>
             <ul className="space-y-1 text-sm mb-2">
               <li className="hover:text-primary transition-colors">

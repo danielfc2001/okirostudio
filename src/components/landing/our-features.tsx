@@ -71,12 +71,17 @@ export default function OurFeatures() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feat) => (
+          {features.map((feat, index) => (
             <FeatureCard
               key={feat.name}
               vector={feat.vector}
               name={feat.name}
               description={feat.description}
+              className={cn(
+                "bg-white dark:bg-accent-foreground flex flex-col items-center border px-5 py-10 rounded-lg shadow-md flex-grow overflow-hidden hover:shadow-xl transition-all duration-300 group scroll-animate",
+                isVisible && "scroll-animate-visible"
+              )}
+              style={{ animationDelay: `${index * 0.15}s` }}
             />
           ))}
         </div>

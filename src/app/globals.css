@@ -2,8 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Elimina o corrige el font-face si no usas archivos locales */
+@font-face {
+  font-family: 'Urbanist';
+  src: url('/fonts/Urbanist-VariableFont_wght.woff2') format('woff2'),
+       url('/fonts/Urbanist-VariableFont_wght.woff') format('woff');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-urbanist), 'Urbanist', Arial, Helvetica, sans-serif;
 }
 
 html {
