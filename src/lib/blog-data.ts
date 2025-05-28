@@ -17,6 +17,7 @@ export interface PostType {
   imageUrl: string; // For main blog post image
   thumbnailUrl?: string; // Optional: For blog list page if different
   dataAiHint?: string;
+  categorie: string; // Category of the post
   content: string; // Full HTML content
   comments: Comment[];
 }
@@ -33,6 +34,7 @@ export const blogPostsList: PostType[] = [
     imageUrl: "https://picsum.photos/1200/600?random=10",
     thumbnailUrl: "https://picsum.photos/600/400?random=10",
     dataAiHint: "AI technology",
+    categorie: "Tecnología",
     content: `
       <p class="mb-4 text-lg leading-relaxed">Artificial intelligence (AI) is no longer a futuristic concept but a present-day reality transforming the marketing landscape. From personalized customer experiences to data-driven insights, AI is empowering marketers to achieve unprecedented levels of efficiency and effectiveness.</p>
       <h2 class="text-2xl font-semibold mt-6 mb-3">Personalization at Scale</h2>
@@ -80,6 +82,7 @@ export const blogPostsList: PostType[] = [
     imageUrl: "https://picsum.photos/1200/600?random=11",
     thumbnailUrl: "https://picsum.photos/600/400?random=11",
     dataAiHint: "social media",
+    categorie: "Publicidad",
     content: `
       <p class="mb-4 text-lg leading-relaxed">Social media advertising offers a powerful platform to reach targeted audiences and drive conversions. However, maximizing return on investment (ROI) requires a strategic approach, careful planning, and continuous optimization.</p>
       <h2 class="text-2xl font-semibold mt-6 mb-3">Define Clear Objectives</h2>
@@ -121,6 +124,7 @@ export const blogPostsList: PostType[] = [
     imageUrl: "https://picsum.photos/1200/600?random=12",
     thumbnailUrl: "https://picsum.photos/600/400?random=12",
     dataAiHint: "writing content",
+    categorie: "Contenido",
     content: `
       <p class="mb-4 text-lg leading-relaxed">In the realm of digital marketing, content truly is king. Well-crafted blog posts not only attract and engage your target audience but also establish your brand as a thought leader in your industry. Here's how to create content that captivates.</p>
       <h2 class="text-2xl font-semibold mt-6 mb-3">Understand Your Audience's Needs</h2>
@@ -155,6 +159,7 @@ export const blogPostsList: PostType[] = [
     imageUrl: "https://picsum.photos/1200/600?random=13",
     thumbnailUrl: "https://picsum.photos/600/400?random=13",
     dataAiHint: "SEO chart",
+    categorie: "SEO",
     content: `
       <p class="mb-4 text-lg leading-relaxed">The world of Search Engine Optimization (SEO) is constantly evolving. Staying ahead of the curve is crucial for maintaining and improving your website's visibility. Here are some key SEO trends to watch for in 2024.</p>
       <h2 class="text-2xl font-semibold mt-6 mb-3">AI and Search</h2>
@@ -212,6 +217,7 @@ export const blogPostsList: PostType[] = [
     imageUrl: "https://picsum.photos/1200/600?random=14",
     thumbnailUrl: "https://picsum.photos/600/400?random=14",
     dataAiHint: "email inbox",
+    categorie: "Email Marketing",
     content: `
       <p class="mb-4 text-lg leading-relaxed">Email marketing remains one of the most effective digital marketing channels. When combined with automation, its power to nurture leads, engage customers, and drive sales is significantly amplified.</p>
       <h2 class="text-2xl font-semibold mt-6 mb-3">What is Email Marketing Automation?</h2>
@@ -263,6 +269,7 @@ export const blogPostsList: PostType[] = [
     imageUrl: "https://picsum.photos/1200/600?random=15",
     thumbnailUrl: "https://picsum.photos/600/400?random=15",
     dataAiHint: "video play",
+    categorie: "Video Marketing",
     content: `
       <p class="mb-4 text-lg leading-relaxed">In today's fast-paced digital world, video marketing has emerged as an indispensable tool for brands looking to connect with their audience, increase engagement, and drive conversions. If you're not using video, you're likely missing out on significant opportunities.</p>
       <h2 class="text-2xl font-semibold mt-6 mb-3">Why Video is So Effective</h2>
@@ -324,6 +331,7 @@ export const blogPostsList: PostType[] = [
     imageUrl: "https://picsum.photos/1200/600?random=16",
     thumbnailUrl: "https://picsum.photos/600/400?random=16",
     dataAiHint: "influencer person",
+    categorie: "Influencer Marketing",
     content: `
       <p class="mb-4 text-lg leading-relaxed">Influencer marketing has become a cornerstone of modern digital strategy. Collaborating with the right influencers can amplify your brand's reach, build trust, and drive sales. However, success requires careful planning and execution.</p>
       <h2 class="text-2xl font-semibold mt-6 mb-3">Identifying the Right Influencers</h2>
@@ -365,6 +373,7 @@ export const blogPostsList: PostType[] = [
     imageUrl: "https://picsum.photos/1200/600?random=17",
     thumbnailUrl: "https://picsum.photos/600/400?random=17",
     dataAiHint: "data security",
+    categorie: "Legal",
     content: `
       <p class="mb-4 text-lg leading-relaxed">Data privacy is no longer an afterthought in marketing; it's a fundamental requirement. With regulations like GDPR, CCPA, and others evolving, marketers must prioritize transparency and ethical data handling.</p>
       <h2 class="text-2xl font-semibold mt-6 mb-3">Key Privacy Principles</h2>
@@ -412,6 +421,7 @@ export const blogPostsList: PostType[] = [
     imageUrl: "https://picsum.photos/1200/600?random=18",
     thumbnailUrl: "https://picsum.photos/600/400?random=18",
     dataAiHint: "website design",
+    categorie: "Diseño",
     content: `
       <p class="mb-4 text-lg leading-relaxed">User Experience (UX) and User Interface (UI) design are critical components of a successful digital presence. A well-designed website or app not only looks good but also guides users effectively towards conversion goals.</p>
       <h2 class="text-2xl font-semibold mt-6 mb-3">First Impressions Matter</h2>
@@ -453,6 +463,7 @@ export const blogPostsList: PostType[] = [
     imageUrl: "https://picsum.photos/1200/600?random=19",
     thumbnailUrl: "https://picsum.photos/600/400?random=19",
     dataAiHint: "interactive quiz",
+    categorie: "Contenido",
     content: `
       <p class="mb-4 text-lg leading-relaxed">In a crowded digital landscape, capturing and retaining audience attention is a major challenge. Interactive content offers a dynamic way to engage users, provide value, and gather insights.</p>
       <h2 class="text-2xl font-semibold mt-6 mb-3">What is Interactive Content?</h2>
@@ -495,6 +506,7 @@ export const blogPostsList: PostType[] = [
     imageUrl: "https://picsum.photos/1200/600?random=20",
     thumbnailUrl: "https://picsum.photos/600/400?random=20",
     dataAiHint: "game controller",
+    categorie: "Gamificación",
     content: `
       <p class="mb-4 text-lg leading-relaxed">Gamification in marketing involves applying game-design elements and principles in non-game contexts to engage users and motivate action. It's a powerful tool for making marketing interactions more fun and rewarding.</p>
       <h2 class="text-2xl font-semibold mt-6 mb-3">Core Game Mechanics in Marketing</h2>
@@ -544,6 +556,7 @@ export const blogPostsList: PostType[] = [
     imageUrl: "https://picsum.photos/1200/600?random=21",
     thumbnailUrl: "https://picsum.photos/600/400?random=21",
     dataAiHint: "microphone podcast",
+    categorie: "Podcasting",
     content: `
       <p class="mb-4 text-lg leading-relaxed">Podcasting has exploded in popularity, offering brands a unique and intimate way to connect with their audience, share expertise, and build a strong community. It's a powerful medium for establishing thought leadership and brand affinity.</p>
       <h2 class="text-2xl font-semibold mt-6 mb-3">Why Podcasting for Your Brand?</h2>

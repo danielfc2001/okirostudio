@@ -35,16 +35,6 @@ const features: Features[] = [
       </svg>
     `,
   },
-  {
-    name: "Producción Audiovisual",
-    description:
-      "Creación y edición de contenido audiovisual impactante para comunicar de forma efectiva.",
-    vector: `
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M17 10.5V7C17 5.9 16.1 5 15 5H5C3.9 5 3 5.9 3 7V17C3 18.1 3.9 19 5 19H15C16.1 19 17 18.1 17 17V13.5L21 17V7L17 10.5Z" fill="#fff"/>
-      </svg>
-    `,
-  },
 ];
 
 export default function OurFeatures() {
@@ -70,7 +60,7 @@ export default function OurFeatures() {
             atención personalizada.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-8">
           {features.map((feat, index) => (
             <FeatureCard
               key={feat.name}

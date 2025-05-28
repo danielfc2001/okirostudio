@@ -3,7 +3,12 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { Logo } from "./logo";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -17,6 +22,13 @@ const navLinks = [
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [location, setLocation] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setLocation(window.location.pathname);
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,8 +48,14 @@ export default function Navigation() {
       )}
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
-        <Link href="/" aria-label="MarkDev Home">
-          <Logo className="h-10 w-auto" />
+        <Link href="/" aria-label="OkiroStudio">
+          <Logo
+            className={`${
+              (location === "/" && isScrolled) || location !== "/"
+                ? `fill-primary`
+                : `fill-white`
+            } h-10 w-auto dark:fill-white dark:text-white`}
+          />
         </Link>
 
         {/* Desktop Navigation */}
@@ -46,7 +64,9 @@ export default function Navigation() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium transition-colors hover:text-primary px-3 py-2"
+              className={`${
+                location === "/" && !isScrolled && "text-white"
+              } text-sm font-medium transition-colors hover:text-primary px-3 py-2`}
             >
               {link.label}
             </Link>
@@ -57,7 +77,11 @@ export default function Navigation() {
               Subscribete
             </Link>
           </Button>
-          <div className="ml-2">
+          <div
+            className={`${
+              location === "/" && !isScrolled && "text-white"
+            } ml-2`}
+          >
             <ThemeToggle />
           </div>
         </nav>
@@ -70,6 +94,7 @@ export default function Navigation() {
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
+            <SheetTitle className="hidden">Menu</SheetTitle>
             <SheetContent side="right" className="w-[280px] flex flex-col p-0">
               <div className="p-6 border-b flex justify-between items-center">
                 <Link
@@ -77,7 +102,7 @@ export default function Navigation() {
                   aria-label="MarkDev Home"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  <Logo className="h-8 w-auto" />
+                  <Logo className="fill-primary dark:fill-white h-8 w-auto" />
                 </Link>
                 <Button
                   variant="ghost"
