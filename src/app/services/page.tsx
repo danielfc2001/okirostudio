@@ -193,18 +193,39 @@ export default function ServicesPage() {
             </div>
             <Button>Buscar</Button>
           </form>
-          <section className="flex flex-row col-span-3">
-            {searchServicesResult.length > 0 ? (
-              <div className="">
-                <h2 className="flex flex-col md:flex-row gap-2 justify-center items-center text-2xl font-bold text-foreground text-center my-5">
-                  Resultados de la búsqueda para:{" "}
-                  <span className="text-primary">{currentSearchTerm}</span>
-                  <span className="flex items-center text-sm text-primary">
-                    ( {searchServicesResult.length} Coincidencias)
-                  </span>
-                </h2>
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 px-20 mt-5">
-                  {searchServicesResult.map((service) => (
+          {/* Las tabs siempre visibles */}
+          <Tabs
+            defaultValue={selectedCategory}
+            value={selectedCategory}
+            onValueChange={setSelectedCategory}
+            className="w-full"
+          >
+            <div className="my-8">
+              <TabsList className="flex flex-wrap h-auto gap-2 justify-center">
+                {servicesData.map((category) => (
+                  <TabsTrigger
+                    key={category.service}
+                    value={category.service}
+                    className="px-4 py-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                  >
+                    {category.service}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </div>
+            {servicesData.map((category) => (
+              <TabsContent
+                key={category.service}
+                value={category.service}
+                className="mt-0"
+              >
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 px-20">
+                  {(searchServicesResult.length > 0
+                    ? searchServicesResult.filter(
+                        (service) => service.category === category.service
+                      )
+                    : category.options
+                  ).map((service) => (
                     <Card
                       data-card={service.name}
                       key={service.name}
@@ -219,12 +240,6 @@ export default function ServicesPage() {
                         <CardTitle>{service.name}</CardTitle>
                       </CardHeader>
                       <CardContent className="flex flex-col justify-between items-right">
-                        <span className="text-sm text-muted-foreground">
-                          Categoria:
-                          <span className="ml-2 text-primary">
-                            {service.category}
-                          </span>
-                        </span>
                         <CardDescription className="text-sm text-muted-foreground">
                           {service.description}
                         </CardDescription>
@@ -245,74 +260,9 @@ export default function ServicesPage() {
                     </Card>
                   ))}
                 </div>
-              </div>
-            ) : (
-              <Tabs
-                defaultValue={selectedCategory}
-                onValueChange={setSelectedCategory}
-                className="w-full"
-              >
-                <div className="my-8">
-                  <TabsList className="flex flex-wrap h-auto gap-2 justify-center">
-                    {servicesData.map((category) => (
-                      <TabsTrigger
-                        key={category.service}
-                        value={category.service}
-                        className="px-4 py-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
-                      >
-                        {category.service}
-                      </TabsTrigger>
-                    ))}
-                  </TabsList>
-                </div>
-
-                {servicesData.map((category) => (
-                  <TabsContent
-                    key={category.service}
-                    value={category.service}
-                    className="mt-0"
-                  >
-                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 px-20">
-                      {category.options.map((service) => (
-                        <Card
-                          data-card={service.name}
-                          key={service.name}
-                          className={`h-full hover:scale-105 transition-transform cursor-pointer ${
-                            selectedService.includes(service.name)
-                              ? `border border-primary`
-                              : ``
-                          }`}
-                          onClick={handleCardClick}
-                        >
-                          <CardHeader>
-                            <CardTitle>{service.name}</CardTitle>
-                          </CardHeader>
-                          <CardContent className="flex flex-col justify-between items-right">
-                            <CardDescription className="text-sm text-muted-foreground">
-                              {service.description}
-                            </CardDescription>
-                            <div className="flex flex-row justify-between items-center mt-3">
-                              <Badge className="text-sm font-medium">
-                                {`Desde: $${service.price.toString()}`}
-                              </Badge>
-                              {selectedService.includes(service.name) && (
-                                <Badge className="text-sm font-medium">
-                                  <span className="hidden md:flex">
-                                    Seleccionado
-                                  </span>
-                                  <CircleCheck className="block md:hidden" />
-                                </Badge>
-                              )}
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
-                  </TabsContent>
-                ))}
-              </Tabs>
-            )}
-          </section>
+              </TabsContent>
+            ))}
+          </Tabs>
           {selectedService.length === 0 ? (
             <span className="w-full text-center my-3 text-muted-foreground">
               No hay servicios seleccionados
