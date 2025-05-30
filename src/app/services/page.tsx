@@ -13,7 +13,7 @@ import {
 import { OptionsType, servicesData } from "@/lib/services";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { Badge } from "@/components/ui/badge";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { CircleCheck, X } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import {
@@ -38,11 +38,11 @@ export default function ServicesPage() {
   >([]);
 
   const [currentSearchTerm, setCurrentSearchTerm] = useState<string>("");
+  const [suggestions, setSuggestions] = useState<OptionsType[]>([]);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const handleCardClick = (e: any) => {
-    console.log("Card clicked");
     const card = e.currentTarget?.dataset.card;
-    console.log(card);
     const match = selectedService.find((service) => service === card);
     if (!match) {
       const services = [...selectedService, card];
@@ -52,6 +52,7 @@ export default function ServicesPage() {
         title: "Advertencia",
         description: "El servicio ya ha sido seleccionado",
         variant: "destructive",
+        duration: 3000,
       });
     }
   };
@@ -62,10 +63,12 @@ export default function ServicesPage() {
       title: "Servicios removidos",
       description: "Los servicios han sido removidos correctamente.",
       variant: "destructive",
+      duration: 3000,
     });
   };
 
   const handleSearchServices = (e: React.FormEvent<HTMLFormElement>) => {
+    setSuggestions([]);
     e.preventDefault();
     const searchInput = e.currentTarget.querySelector(
       "input[type='search']"
@@ -109,10 +112,42 @@ export default function ServicesPage() {
     }
   };
 
+  const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const searchTerm = e.target.value.toLowerCase().trim();
+    if (searchTerm === "") {
+      setSuggestions([]);
+      setSearchServicesResult([]);
+      return;
+    }
+    const data = servicesData.flatMap((category) => category.options);
+    const filtered = data.filter(
+      (service) =>
+        service.name.toLowerCase().includes(searchTerm) ||
+        service.description.toLowerCase().includes(searchTerm)
+    );
+    setSuggestions(filtered.slice(0, 5)); // Limita a 5 sugerencias
+  };
+
+  const handleSuggestionClick = (service: OptionsType) => {
+    setSuggestions([]);
+    setCurrentSearchTerm(service.name);
+    if (searchInputRef.current) {
+      searchInputRef.current.value = service.name;
+    }
+    setSearchServicesResult([
+      {
+        category:
+          servicesData.find((cat) => cat.options.includes(service))?.service ||
+          "no category",
+        ...service,
+      },
+    ]);
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Navigation />
-      <main className="w-full flex-grow py-28">
+      <main className="w-full container flex-grow py-28">
         <header className="text-center px-4 mb-16">
           <h1 className="text-5xl font-bold text-foreground mb-4">
             Nuestros servicios
@@ -127,13 +162,35 @@ export default function ServicesPage() {
         <section className="flex flex-col">
           <form
             onSubmit={handleSearchServices}
-            className="flex flex-row items-center justify-center gap-5 w-full"
+            className="flex flex-row items-center justify-center gap-5 w-full relative"
+            autoComplete="off"
           >
-            <input
-              type="search"
-              className="w-2/3 bg-transparent border border-gray-500  px-3 py-2 rounded-md"
-              placeholder="Buscar un servicio"
-            />
+            <div className="w-2/3 relative">
+              <input
+                ref={searchInputRef}
+                type="search"
+                className="w-full bg-transparent border border-gray-500 px-3 py-2 rounded-md"
+                placeholder="Buscar un servicio"
+                onChange={handleSearchInputChange}
+                autoComplete="off"
+              />
+              {suggestions.length > 0 && (
+                <ul className="absolute left-0 right-0 mt-1 bg-background border border-gray-300 rounded-md shadow-lg z-20 max-h-56 overflow-y-auto">
+                  {suggestions.map((service) => (
+                    <li
+                      key={service.name}
+                      className="px-4 py-2 cursor-pointer hover:bg-primary/10 transition-colors"
+                      onClick={() => handleSuggestionClick(service)}
+                    >
+                      <span className="font-medium">{service.name}</span>
+                      <span className="ml-2 text-xs text-muted-foreground">
+                        {service.description}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
             <Button>Buscar</Button>
           </form>
           <section className="flex flex-row col-span-3">
@@ -142,7 +199,7 @@ export default function ServicesPage() {
                 <h2 className="flex flex-col md:flex-row gap-2 justify-center items-center text-2xl font-bold text-foreground text-center my-5">
                   Resultados de la búsqueda para:{" "}
                   <span className="text-primary">{currentSearchTerm}</span>
-                  <span className="flex items-center gap-2 text-sm text-primary">
+                  <span className="flex items-center text-sm text-primary">
                     ( {searchServicesResult.length} Coincidencias)
                   </span>
                 </h2>
@@ -208,6 +265,7 @@ export default function ServicesPage() {
                     ))}
                   </TabsList>
                 </div>
+
                 {servicesData.map((category) => (
                   <TabsContent
                     key={category.service}
@@ -281,19 +339,14 @@ export default function ServicesPage() {
                     <Badge
                       key={service}
                       className="flex justify-between px-3 py-1 text-xs md:text-sm font-medium rounded-sm md:rounded-md"
+                      onClick={() => {
+                        const newServices = selectedService.filter(
+                          (s) => s !== service
+                        );
+                        setSelectedService(newServices);
+                      }}
                     >
                       {`${serviceData?.name} - $${serviceData?.price}`}
-                      <Button
-                        className="bg-transparent hover:bg-transparent hover:scale-110 transition-transform cursor-pointer"
-                        onClick={() => {
-                          const newServices = selectedService.filter(
-                            (s) => s !== service
-                          );
-                          setSelectedService(newServices);
-                        }}
-                      >
-                        <X />
-                      </Button>
                     </Badge>
                   );
                 })}

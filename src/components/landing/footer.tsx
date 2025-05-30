@@ -52,7 +52,7 @@ export default function Footer() {
               aria-label="MarkDev Home"
               className="inline-block text-left"
             >
-              <LogoReduced className="min-w-48" />
+              <LogoReduced className="dark:fill-white min-w-48" />
             </Link>
           </div>
           {/* Logo and Copyright */}

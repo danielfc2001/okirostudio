@@ -104,14 +104,14 @@ export default function Navigation() {
                 >
                   <Logo className="fill-primary dark:fill-white h-8 w-auto" />
                 </Link>
-                <Button
+                {/*                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => setMobileMenuOpen(false)}
                   aria-label="Close menu"
                 >
                   <X className="h-6 w-6" />
-                </Button>
+                </Button> */}
               </div>
               <nav className="flex-grow p-4">
                 <div className="space-y-2">

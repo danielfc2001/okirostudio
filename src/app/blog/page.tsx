@@ -196,7 +196,7 @@ export default function BlogPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Navigation />
-      <main className="flex-grow lg:container mx-auto px-4 py-28">
+      <main className="flex-grow container mx-auto px-4 py-28">
         <header className="text-center mb-16">
           <h1 className="text-5xl font-bold text-foreground mb-4">
             Nuestro blog
